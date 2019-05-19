@@ -1,0 +1,17 @@
+require.config({
+	baseUrl:'/',
+	paths:{
+		"jquery":'libs/jquery/jquery-3.2.1',
+		"template":"libs/art-template/template-web",
+		"cookie":"libs/jquery-plugins/jquery.cookie",
+		"header":'js/module/header',
+		"footer":'js/module/footer',
+		"calender":'js/module/calender',
+		"login":"js/module/login"
+	},
+	shim:{
+		"cookie":{
+			desp:['jquery']
+		}
+	}
+})

@@ -1,0 +1,210 @@
+@import "module/base.scss";
+@import "module/header.scss";
+@import "module/footer.scss";
+@import "module/login.scss";
+
+body{
+	background-color: #F5F5F5;;
+}
+
+/*section  房源的筛选*/
+section{
+	height: 55px;
+	margin-top: 10px;
+	box-sizing: border-box;
+	position: relative;
+}
+section form{
+	display: flex;
+	height: 55px;
+	margin: 20px 30px;
+	padding-left: 10px;
+	background-color: white;
+	align-items: center;
+	color: #666666;
+}
+section form>*{
+	height: 35px;
+	line-height: 35px;
+	cursor: pointer;
+	padding-left: 10px;
+	width: 180px;
+	margin-right: 20px;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 5px;	
+	background-color: white;
+}
+section form div{
+	border: none;
+}
+section form div a{
+	display: inline-block;
+	color: white;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: rgba(240, 84, 106,.8);
+	color:white;
+}
+section form input{
+	cursor: text;
+}
+section form dl{
+	display: flex;
+}
+section form dl dt{
+
+}
+section form dl dd{
+	height: 35px;
+	line-height: 35px;
+	border: 1px solid #666666;
+	display: none;
+}
+/*section  房源的筛选*/
+
+/*日历*/
+.date-wrap{
+	position: absolute;
+	top: 55px;
+	left: 200px;
+	background-color: rgba(255,255,255,.8);
+}
+/*日历*/
+
+
+
+/*房源样式*/
+.content{
+	margin: 20px 30px;
+	padding: 20px;
+	box-sizing: border-box;
+	background-color: white;
+	/*display: none;*/
+}
+.content.hide{
+	display: none;
+}
+
+.house-wrap{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.house-wrap .post{
+	/*height: 450px;*/
+	width: 290px;
+}
+ .house-wrap .post .post-top{
+	width: 100%;
+	height: 232px;
+	position: relative;
+}
+.house-wrap .post .post-top a{
+	display: block;
+}
+ .house-wrap .post .post-top a img{
+	height: 232px;
+	width: 100%;
+}
+.house-wrap .post .post-top h3{
+	padding: 6px 14px;
+	/*padding: 10px 20px;*/
+	background-color: rgba(240, 84, 106,.8);
+	font-size: 18px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: white;
+}
+.house-wrap .post .post-top h3 i{
+	font-size: 22px !important;
+	color: white !important; 
+}
+.house-wrap .post .post-top>span{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	background-color: rgba(0,0,0,.1);
+}
+.house-wrap .post .post-top span i{
+	cursor: pointer;
+	font-size: 28px !important;
+	color: #cccccc !important;
+}
+.house-wrap .post .post-top span i.red{
+	color:rgba(240, 84, 106,1) !important;
+}
+.house-wrap .post .post-bot{
+	padding: 15px 0;
+}
+.house-wrap .post .post-bot h4{
+	font-size: 20px;
+	color: #17181b;
+	margin-bottom: 5px;
+}
+.house-wrap .post .post-bot h4 a{
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+	font-size: 12px;
+	color: #999999;
+}
+.house-wrap .post .post-bot h4 a i{
+	color: #f0546a !important;
+	font-size: 16px;
+}
+.house-wrap .post .post-bot p{
+	font-size: 12px;
+	color: #999999;
+	margin: 10px 0;
+}
+.house-wrap .post .post-bot ul{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.house-wrap .post .post-bot ul li{
+	font-size: 12px;
+	color: #999999;
+	padding: 0 2px;
+	margin-right: 2px;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+}
+/*房源*/
+
+/*加载更多*/
+.content .show_more{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #666666;
+	border: 1px solid rgba(0,0,0,.2);
+	margin: 15px;
+}
+.content .show_more:hover{
+	color: rgb(240,85,105 );
+}
+.content .show_more .more_btn{
+	cursor: pointer;
+}
+.content .show_more .hid{
+	width: 90px;
+	overflow: hidden;
+	margin: 0 auto;
+	display: none;
+}
+.content .show_more .hid i{
+	color: #f0546a !important;
+	font-size: 24px !important;
+}
+
+/*加载更多*/

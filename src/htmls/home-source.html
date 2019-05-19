@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>房源</title>
+	<link rel="shortcut icon" href="/img/logo_o.png">
+	<link rel="stylesheet" type="text/css" href="/libs/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="/css/home-source.css">
+</head>
+<body>
+	<div class="page-top">
+		<header></header>
+	</div>
+
+	<!-- 房源筛选 -->
+	<section>
+		<form name="home-filter">
+
+			<input type="text" name="" class="address"  placeholder="位置">
+
+			<input type="text" name="" class ="selectDate" placeholder="年/月/日">
+
+			<dl>
+				<dt>人数</dt>
+				<dd>1</dd>
+				<dd>2-4</dd>
+				<dd>5-8</dd>
+				<dd>9+</dd>
+			</dl>
+
+			<dl>
+				<dt>房间类型</dt>
+				<dd>独立房间</dd>
+				<dd>整套出租</dd>
+				<dd>合住房间</dd>
+			</dl>
+
+			<dl>
+				<dt>价格区间/天</dt>
+				<dd>100以下</dd>
+				<dd>100-200</dd>
+				<dd>200-300</dd>
+				<dd>300+</dd>
+			</dl>
+			
+			<div>
+				<a href="javascript:;" id="aFilter">筛选</a>
+				<a href="javascript:;" id="aReset">重置</a>
+			</div>
+		</form>
+
+		<!-- 日历容器 -->
+		<div class="date-wrap">
+			<div class="header">
+				<span id="preMonth">上一月</span>
+				<h3 id="title"></h3>
+				<span id="nextMonth">下一月</span>
+			</div>
+			<ul class="nav">
+				<li>日</li>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+			</ul>
+			<ul class="datelist" id="datelist"></ul>
+		</div>
+		<!-- 日历 -->
+	</section>
+
+	<!-- 房源展示区域 -->
+	<div class="content">
+
+
+		<div class="house-wrap"></div>
+		<script type="text/html" id="houseModle">
+			<div class="post">
+				<div class="post-top">
+					<a href="#">
+						<img src="img/price1.jpg" alt="" />
+					</a>
+					<h3>
+						<i class="iconfont icon-redu"></i>
+						<span>121</span>
+					</h3>
+					<span class='unlike'>
+						<i class="iconfont icon-shoucang"></i>
+					</span>
+				</div>
+				<div class="post-bot">
+					<h4>
+						<span>白书家的民宿</span>
+						<a href="#">
+							<i class="iconfont icon-didian"></i>
+							<span>成都春熙路</span>
+						</a>
+					</h4>
+					<ul>
+						<li>整套出租</li>
+						<li>三室一厅</li>
+						<li>3张床</li>
+						<li>宜住5人</li>
+					</ul>
+					<p>靠近地铁3号线/春熙路/景华小区/宁静温馨小家</p>
+
+				</div>
+
+			</div>
+		</script>
+
+		<div class="show_more">
+			<span class="more_btn">加载更多</span>
+			<div class="hid">
+				<i class="iconfont icon-hongyuan-copy-copy"></i>
+				<i class="iconfont icon-hongyuan-copy-copy"></i>
+				<i class="iconfont icon-hongyuan-copy-copy"></i>
+			</div>
+		</div>
+	</div>
+
+	<script src="/libs/require/require.min.js" data-main="/js/home-source.js"></script>
+</body>
+</html>
