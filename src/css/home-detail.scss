@@ -22,22 +22,23 @@
 	color: #333333;
 	font-size: 24px;
 	letter-spacing: 2px;
-}
-.houseInfo .housecont .orderTop h3 i{
-	float: right;
-	color: #cccccc;
-	cursor: pointer;
-}
-.houseInfo .housecont .orderTop h3 span{
-	font-size: 12px;
-	float: right;
-	margin-right: 30px;
-	cursor: pointer;
-	color: #cccccc;
-}
-.houseInfo .housecont .orderTop h3 i.ac{
-	color: #f0546a;
-	margin-right: 5px;
+
+	i{
+		float: right;
+		color: #cccccc;
+		cursor: pointer;
+		&.ac{
+			color: #f0546a;
+			margin-right: 5px;
+		}
+	}
+	span{
+		font-size: 12px;
+		float: right;
+		margin-right: 30px;
+		cursor: pointer;
+		color: #cccccc;
+	}
 }
 .houseInfo .housecont .orderTop p{
 	font-size: 14px;

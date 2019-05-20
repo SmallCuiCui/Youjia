@@ -1,21 +1,19 @@
 
-// header模块
-define(['jquery',"template","cookie"],($,templat)=>{
+// header模块，将登陆模块的引入放到header位置，因为所有页面都存在header，所有页面都存在登陆/注册模块
+define(['jquery',"template","login","cookie"],($,templat,Login)=>{
 	class Header{
 		constructor(){
 			this.container = $("header");
 			this.render();
-
-
+			this.login = Login;
 		}
 		render(){
 			this.container.load('/htmls/module/header.html',()=>{
-
 				//header的事件绑定
 				this.bindEvents();
-
 				// 判断是否登录
 				this.isLogin();
+				this.login.render();
 			})
 		}
 

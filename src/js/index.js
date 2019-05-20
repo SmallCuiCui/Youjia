@@ -1,5 +1,5 @@
 require(["config"],()=>{
-	require(["header","footer","calender","login"],(header)=>{
+	require(["header","footer","calender"],(header)=>{
 		
 		class Home{
 			constructor(){

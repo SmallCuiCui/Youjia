@@ -1,13 +1,12 @@
 
-//登录注册模块
+//登录注册模块，逻辑比较多，独立出来单独管理
 define(['jquery',"template","cookie"],($,templat)=>{
 	class Login{
 		constructor(){
-			this.container = $("#aside");
-			this.render();
+			
 		}
 		render(){
-			this.container.load('/htmls/module/login.html',()=>{
+			$("#aside").load('/htmls/module/login.html',()=>{
 				this.bindEvents();
 			});
 		}
@@ -77,5 +76,5 @@ define(['jquery',"template","cookie"],($,templat)=>{
 		}
 }
 
-new Login();
+ return new Login();
 })

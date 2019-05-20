@@ -6,6 +6,16 @@
 body{
 	background-color: #F5F5F5;
 }
+// 导航标记
+.menu{
+	li:nth-child(2){
+		display:none;
+	}
+	li:nth-child(6){
+		background-color: rgba(240, 84, 106,.7);
+		border-radius: 5px;
+	}
+}
 .cont-top{
 	height: 80px;
 	padding-top: 20px;
@@ -87,13 +97,9 @@ body{
 }
 .cont-bot .cont-bot-left ul{
 	background-color: white;
-	overflow: hidden;
-	position: relative;
-	left: -400px;
 }
 
 .cont-bot .cont-bot-left ul li{
-	position: relative;
 	top: 290px;
 	height: 40px;
 	line-height: 40px;
@@ -109,7 +115,6 @@ body{
 .cont-bot .cont-bot-left ul li i{
 	margin-right: 20px;
 	font-size: 18px !important;
-	/*color: #f0546a !important;*/
 }
 .cont-bot .cont-bot-left ul li:nth-child(1) i{
 	color: #08c !important;
@@ -145,16 +150,22 @@ body{
 
 .cont-bot .cont-bot-rigth{
 	width: 73%;
+	height:800px;
 	background-color: white;
 	border: 1px solid #e0e0e0;
 	box-sizing: border-box;
+	overflow:visible;
 }
 .cont-bot .cont-bot-rigth ul{
 	position: relative;
-	top: 300px;
-	right: -400px;
+	width:100%;
+	height:auto;
+	overflow:visible;
 }
 .cont-bot .cont-bot-rigth>ul>li{
+	position:absolute;
+	top:0;
+	left:0;
 	display: none;
 	padding: 20px;
 }

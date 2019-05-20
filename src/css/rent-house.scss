@@ -3,7 +3,16 @@
 @import "module/footer.scss";
 @import "module/login.scss";
 
-
+// 导航标记
+.menu{
+	li:nth-child(2){
+		display:none;
+	}
+	li:nth-child(4){
+		background-color: rgba(240, 84, 106,.7);
+		border-radius: 5px;
+	}
+}
 
 .confirm_wrap{
 	width: 100%;
