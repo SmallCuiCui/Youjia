@@ -29,23 +29,23 @@
 				</h3> 
 
 			</form>
-			<form name="register" class="rgs_form" method="post" action="php/register.php">
+			<form name="register" class="rgs_form" method="post">
 				<!-- 使用电话号码注册 -->
 				<h4>
 					<i class="iconfont icon-shouji"></i>
-					<input type="text" name="number" placeholder="电话号码">
+					<input type="text" name="number" placeholder="电话号码" id="regsphone">
 				</h4>
 				
-				<p>此电话已经注册</p>
+				<p id="mkphone-p">此电话已经注册</p>
 				<h4>
 					<i class="iconfont icon-suo"></i>
-					<input type="password" name="new-pas" placeholder="密码">
+					<input type="password" name="new-pas" placeholder="密码" id="pswinput">
 				</h4>
 				
-				<p id="new-ps-p">密码强度不够</p>
+				<p id="new-ps-p">8-16个字符，必须包含英文、数字、字符中的两种</p>
 				<h4>
 					<i class="iconfont icon-suo"></i>
-					<input type="password" name="che-pas" placeholder="确认密码" >
+					<input type="password" name="che-pas" placeholder="确认密码" id="pswconf">
 				</h4>
 				
 				<p id="che-pas-p">密码不一致，请重新输入</p>

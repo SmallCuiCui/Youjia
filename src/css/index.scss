@@ -150,7 +150,7 @@
 	top: 320px;
 	left: 500px;
 	height: 50px;
-	z-index: 100;
+	z-index: 10;
 	animation: move 0.5s ease;
 }
 
@@ -166,7 +166,6 @@
 	width: 600px;
 	float: left;
 	border-radius: 20px;
-	/*/*background-color: #fff;*/  /*修改搜索框背景颜色透明度*/
 	background-color: rgba(255,255,255,0.8);
 	display: flex;
 	align-items: center;

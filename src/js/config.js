@@ -7,7 +7,8 @@ require.config({
 		"header":'js/module/header',
 		"footer":'js/module/footer',
 		"calender":'js/module/calender',
-		"login":"js/module/login"
+		"login":"js/module/login",
+		"url":"js/module/url"
 	},
 	shim:{
 		"cookie":{
