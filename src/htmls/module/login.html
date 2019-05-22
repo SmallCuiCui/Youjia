@@ -5,7 +5,7 @@
 			<p id="user-reg">用户注册</p>
 		</div>
 		<div class="lg-bottom">
-			<form name="login" class="lg_form" method="get" action="php/login.php">
+			<form class="lg_form">
 				<h4>
 					<i class="iconfont icon-shouji"></i>
 					<input type="text" name="username" id="username" placeholder="手机号/邮箱">
@@ -21,7 +21,7 @@
 
 				<p>抱歉！密码错误</p>
 
-				<input type="submit" name="submit" class="login-btn" value="登录">
+				<input type="buttom" class="login-btn" value="登录">
 
 				<h3 class="lg-botp">
 					<input type="checkbox" name="" checked="checked">自动登录
@@ -29,17 +29,17 @@
 				</h3> 
 
 			</form>
-			<form name="register" class="rgs_form" method="post">
+			<form class="rgs_form">
 				<!-- 使用电话号码注册 -->
 				<h4>
 					<i class="iconfont icon-shouji"></i>
-					<input type="text" name="number" placeholder="电话号码" id="regsphone">
+					<input type="text" name="number" placeholder="电话号码" id="regsphone" value="">
 				</h4>
 				
 				<p id="mkphone-p">此电话已经注册</p>
 				<h4>
 					<i class="iconfont icon-suo"></i>
-					<input type="password" name="new-pas" placeholder="密码" id="pswinput">
+					<input type="text" onfocus="this.type='password'" placeholder="密码" id="pswinput">
 				</h4>
 				
 				<p id="new-ps-p">8-16个字符，必须包含英文、数字、字符中的两种</p>
@@ -58,7 +58,7 @@
 				
 				<p>抱歉！验证码错误</p>
 
-				<input type="submit" name="submit" class="reg-btn" value="立即注册">
+				<input type="buttom" class="reg-btn" value="立即注册">
 
 				<h3 class="reg_bottom">
 					<input type="checkbox" name="" checked="checked">

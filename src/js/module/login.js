@@ -11,6 +11,12 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 		}
 		render(){
 			$("#aside").load('/htmls/module/login.html',()=>{
+				// 清空注册表单内容
+				setTimeout(function() {
+					$("#regsphone").prop("readonly","");
+					$("#pswinput").prop("readonly","");
+				}, 50)
+
 				this.bindEvents();
 			});
 		}
@@ -86,21 +92,6 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 					_this.reg = false;
 				}
 
-				// 数据库请求，判断该账户是否已经注册
-				let phone = _this.phone,
-					psw = _this.psw;
-				$.ajax({
-					url:url.phpBaseUrl + "register.php",
-					type:'post',
-					data:{phone,psw},
-					dataType:'json',
-					success:data=>{
-						if(data.res_code === 0){
-							_this.reg = false;
-							$("#mkphone-p").html(data.res_message).css("opacity","1");
-						}
-					}
-				})
 				_this.reg = true;
 				
 				
@@ -138,10 +129,43 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 
 			//点击注册
 			$(".reg-btn").click(function(){
-				$(".lg_form").show().siblings().hide();
-				$("#user-reg").removeClass('border-bot');
-				$("#user-login").addClass('border-bot');
-				$('aside').css({'height':'400px'});
+				if(_this.reg){
+
+					// 访问数据库，插入数据
+					let phone = _this.phone,
+						psw = _this.psw;
+					console.log(222);
+					$.ajax({
+						url:url.phpBaseUrl + "register.php",
+						type:'post',
+						data:{phone,psw},
+						dataType:'json',
+						success:data=>{
+							if(data.res_code === 0){
+								_this.reg = false;
+								$("#mkphone-p").html(data.res_message).css("opacity","1");
+							}else if(data.res_code === 1){
+								if(confirm(data.res_message)){
+									// 跳转到登陆页面
+									$(".lg_form").show().siblings().hide();
+									$("#user-reg").removeClass('border-bot');
+									$("#user-login").addClass('border-bot');
+									$('aside').css({'height':'400px'});
+								}else{
+									$(".aside-wrap").hide();
+								}
+							}else{
+								alert(data.res_message);
+							}
+							
+						}
+					})
+
+					
+				}else{
+					return;
+				}
+				
 			});
 
 		}

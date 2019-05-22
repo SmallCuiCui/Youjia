@@ -16,9 +16,6 @@ aside{
 	z-index: 100px;
 	top: 50px;
 	right: 300px;
-	// bottom: 0;
-	// left: 0;
-	// margin: auto;
 	width: 700px;
 	height: 400px;
 	background-color:white;
@@ -95,7 +92,7 @@ aside .login-box form p{
 	padding-left:20px;
 	opacity: 0;
 }
-aside .login-box form input[type="submit"]{
+aside .login-box form input[type="buttom"]{
 	width: 350px;
 	margin:0 auto;
 	height: 40px;
@@ -107,7 +104,7 @@ aside .login-box form input[type="submit"]{
 	cursor:pointer;
 	opacity:.8;
 }
-aside .login-box form input[type="submit"]:hover{
+aside .login-box form input[type="buttom"]:hover{
 	opacity:1;
 }
 
