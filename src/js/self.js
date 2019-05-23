@@ -1,16 +1,19 @@
 require(['config'],()=>{
-	require(['header'],(header)=>{
+	require(['header','template'],(header,template)=>{
 		class Self{
 			constructor(){
-
+				this.container = $("#selfWrap");
 				this.render();
 				this.bindEvents();
 			}
 			render(){
-				//个人页面默认显示个人资料
+				this.data = JSON.parse(localStorage.getItem("userInfo"));
+				console.log(this.data);
+				let data = this.data;
+				this.container.html(template("selfModle",{data}));
 				$('.user-info-li').show();
 
-				//右边导航栏动画效果
+				/*//右边导航栏动画效果
 				window.onload = function(){
 					var time = 500;
 					$('.cont-bot-left ul').animate({"left":"0px"},{"duration":time});
@@ -18,14 +21,14 @@ require(['config'],()=>{
 						time += 50*index;
 						$(this).animate({"top":0},{"duration":time})
 					});
-				}
+				}*/
 
 				//个人信息模块，点击编辑可进行编辑
 				//初始下不可编辑，只有点击编辑之后才可编辑
 				$('.cont-bot-rigth input').attr('disabled',true);
 				//初始情况下隐藏保存
 			}
-			bindEvents(){
+			bindEvents(){ 
 				//点击右边导航，实现模块切换
 				$('.cont-bot-left ul li').click(function(){
 					$(this).addClass('ccc').siblings().removeClass('ccc');

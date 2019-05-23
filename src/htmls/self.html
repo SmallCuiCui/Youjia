@@ -13,7 +13,11 @@
 	</div>
 
 	<!-- 内容区 -->
-	<div class="content-box">
+	<div class="content-box" id="selfWrap">
+		
+	</div>
+
+	<script type="text/html" id="selfModle">
 		<div class="content-wrap slef">
 			<div class="cont-top">
 				<div class="cont-top-left">
@@ -22,17 +26,17 @@
 					</div>
 					<div class="info">
 						<p>
-							<span>芍药</span>
+							<span>{{data.username}}</span>
 							<i class="iconfont icon-xingbienv"></i>
 						</p>
 						<ul>
 							<li>
 								<i class="iconfont icon-dizhi1"></i>
-								<span>北京</span>
+								<span>{{data.adress}}</span>
 							</li>
 							<li>
 								<i class="iconfont icon-icon-life-graduation"></i>
-								<span>学生</span>
+								<span>{{data.work}}</span>
 							</li>
 							<li>
 								<i class="iconfont icon-renzheng"></i>
@@ -92,18 +96,18 @@
 							<div class="user-info">
 								<h3><i class="iconfont icon-hongyuan-copy-copy"></i>基本信息<font class="save">保存</font><font class="edit">编辑</font></h3>
 								<div class="info">
-									<p>用户名：<input type="text" name="user-name" value="芍药"></p>
-									<p>密码：<input type="password" name="user-pas" value="123456"></p>
-									<p>手机号码：<input type="text" name="user-num" value="18281575618"></p>
-									<p>邮箱：<input type="text" name="user-email" value="2511692877@qq.com"></p>
+									<p>用户名：<input type="text" name="user-name" value="{{data.username}}"></p>
+									<p>密码：<input type="password" name="user-pas" value="{{data.psw}}"></p>
+									<p>手机号码：<input type="text" name="user-num" value="{{data.phone}}"></p>
+									<p>邮箱：<input type="text" name="user-email" value="{{data.email}}"></p>
 								</div>
 								
 							</div>
 							<div class="id-info">
 								<h3><i class="iconfont icon-hongyuan-copy-copy"></i>身份信息<span>仅用于安全环节，其他情况将严格为您保密</span><font class="save">保存</font><font class="edit">编辑</font></h3>
 								<div class="info">
-									<p>真实姓名：<input type="text" name="user-tName" value="未填写"></p>
-									<p>身份证号：<input type="text" name="user-id" value="未填写"></p>
+									<p>真实姓名：<input type="text" name="user-tName" value="{{data.trueName}}"></p>
+									<p>身份证号：<input type="text" name="user-id" value="{{data.identityid}}"></p>
 								</div>
 							</div>
 							<div class="social-info">
@@ -121,13 +125,13 @@
 											<a href="#"><i class="iconfont icon-weibo"></i></a>
 										</li>
 									</ul>
-									<p>年龄：<input type="text" name="user-age" value="未填写"></p>
-									<p>所在地：<input type="text" name="user-ad" value="未填写"></p>
+									<p>年龄：<input type="text" name="user-age" value="{{data.age}}"></p>
+									<p>所在地：<input type="text" name="user-ad" value="{{data.address}}"></p>
 									<p>出生日期：<input type="text" name="user-brith" value="未填写"></p>
-									<p>血型：<input type="text" name="user-blood" value="未填写"></p>
+									<p>血型：<input type="text" name="user-blood" value="{{data.blood}}"></p>
 									<p>工作：<input type="text" name="user-work" value="未填写"></p>
 									<p>爱好：<input type="text" name="user-like" value="未填写"></p>
-									<p>个性：<input type="text" name="user-self" value="未填写"></p>
+									<p>个性：<input type="text" name="user-self" value="{{data.personality}}"></p>
 								</div>
 							</div>
 						</li>
@@ -146,7 +150,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</script>
 	<!-- 内容区 -->
 
 

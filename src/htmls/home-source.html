@@ -75,16 +75,17 @@
 	<div class="content">
 
 
-		<div class="house-wrap"></div>
+		<div class="house-wrap" id="houseWrap"></div>
 		<script type="text/html" id="houseModle">
+			{{each list house}}
 			<div class="post">
 				<div class="post-top">
-					<a href="#">
-						<img src="img/price1.jpg" alt="" />
+					<a href="/htmls/detail.html?id={{house.houseid}}">
+						<img src="/img/{{house.imgs}}/1.jpg" alt="" />
 					</a>
 					<h3>
 						<i class="iconfont icon-redu"></i>
-						<span>121</span>
+						<span>{{house.price}}</span>
 					</h3>
 					<span class='unlike'>
 						<i class="iconfont icon-shoucang"></i>
@@ -92,23 +93,27 @@
 				</div>
 				<div class="post-bot">
 					<h4>
-						<span>白书家的民宿</span>
-						<a href="#">
+						<span>{{house.housename}}</span>
+						<a href="/htmls/detail.html?id={{house.id}}">
 							<i class="iconfont icon-didian"></i>
-							<span>成都春熙路</span>
+							<span>{{house.houseadress}}</span>
 						</a>
 					</h4>
 					<ul>
-						<li>整套出租</li>
-						<li>三室一厅</li>
-						<li>3张床</li>
-						<li>宜住5人</li>
+						{{each house.houseclass item}}
+						<li>{{item}}</li>
+						{{/each}}
 					</ul>
-					<p>靠近地铁3号线/春熙路/景华小区/宁静温馨小家</p>
+					<p>
+						{{each house.tips item}}
+						<span>{{item}}</span>
+						{{/each}}
+					</p>
 
 				</div>
 
 			</div>
+			{{/each}}
 		</script>
 
 		<div class="show_more">

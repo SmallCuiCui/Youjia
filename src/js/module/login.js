@@ -97,7 +97,7 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 				
 			})
 
-			// 密码格式验证
+			// 注册密码格式验证
 			$("#pswinput").blur(function(){
 				_this.psw = $(this).val();
 				if(_this.regPsw()){
@@ -109,7 +109,7 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 				}
 			})
 
-			// 确认密码
+			// 注册确认密码
 			$("#pswconf").blur(function(){
 				if($(this).val()===_this.psw){
 					_this.reg = true;
@@ -119,12 +119,71 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 					$("#che-pas-p").css("opacity",1);
 				}
 			})
+			// 登陆账户验证
+			$("#loginInput").blur(function(){
+				_this.phone = $(this).val();
+				if(_this.phone){
+					if(!/^1(3|4|5|7|8)\d{9}$/.test(_this.phone)){
+						_this.login = false;
+						$("#loginphoneP").html("电话号码格式不正确，请重新输入！").css("opacity",1);
+					}else{
+						_this.login = true;
+						$("#loginphoneP").css("opacity",0);
+					}
+				}else{
+					$("#loginphoneP").html("请输入电话号码").css("opacity",1);
+				}
+			})
+			// 登陆密码验证，不为空
+			$("#password").blur(function(){
+				_this.psw = $(this).val();
+				if(_this.psw){
+					_this.login = true;
+					$("#loginpswP").css("opacity",0);
+				}else{
+					_this.login = false;
+					$("#loginpswP").html("请输入密码").css("opacity",1);
+				}
+			});
 
 			//点击登录
 			$(".login-btn").click(function(){
-				$(".aside-wrap").hide();
-				$(".self-li").show();
-				$(".login-li").hide();
+				console.log(_this.phone,_this.psw);
+				if(_this.login){
+					let phone = _this.phone;
+					let psw = _this.psw;
+					$.ajax({
+						url: url.phpBaseUrl +'login.php',
+						type: 'post',
+						data:{phone,psw},
+						dataType: 'json',
+						success: data =>{
+
+							//登录成功，存储cookie
+							if(data.res_code === 1){
+
+								// 保存登陆用户信息，渲染个人中心
+								let userInfo = JSON.parse(data.res_data);
+								localStorage.setItem('userInfo',JSON.stringify(userInfo));
+
+								let expires = {expires:10,path:'/'};
+								$.cookie("user",phone,expires);
+								alert("登录成功！");
+								$(".aside-wrap").hide();
+								$(".self-li").show();
+								$(".login-li").hide();
+
+							}else{
+								_this.login = false;
+								$("#loginphoneP").html(data.res_massage).css("opacity",1);
+							}
+						}
+					});
+					
+				}else{
+					return;
+				}
+				
 			});
 
 			//点击注册

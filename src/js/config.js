@@ -6,7 +6,7 @@ require.config({
 		"cookie":"libs/jquery-plugins/jquery.cookie",
 		"header":'js/module/header',
 		"footer":'js/module/footer',
-		"calender":'js/module/calender',
+		"calender":'js/module/calender',//日历
 		"login":"js/module/login",
 		"url":"js/module/url"
 	},
