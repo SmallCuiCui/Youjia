@@ -28,7 +28,7 @@
 					</p>
 				</div>
 				<div class="orderImgs">
-					<ul>{{house.imgs}}
+					<ul>
 						<li class="ac" index = '1'><img src="/img/{{house.imgs}}/1.jpg"></li>
 						<li index = '2'><img src="/img/{{house.imgs}}/2.jpg"></li>
 						<li index = '3'><img src="/img/{{house.imgs}}/3.jpg"></li>
@@ -61,29 +61,29 @@
 					<div class="model">
 						
 						<div class="model_house ac" index = '1' class="ac">
-							<h3>白书名宿</h3>
-							<p>民宿描述，体验三亚风情，享受沐浴阳光,交通便利，邻近商城，旅游景点，民宿描述，体验三亚风情，享受沐浴阳光,交通便利，邻近商城，旅游景点，</p>
+							<h3>{{house.housename}}</h3>
+							<p>{{house.discript}}</p>
 							<ul>
 								
 									<li>
 										<i class="iconfont icon-index"></i>
-										<span>整套出租</span>
+										<span>{{house.houseclass[1]}}</span>
 									</li>
 									<li>
 										<i class="iconfont icon-wsmp-register"></i>
-										<span>三室一厅</span>
+										<span>{{house.houseclass[2]}}</span>
 									</li>
 									<li>
 										<i class="iconfont icon-TimeStyleCopy"></i>
-										<span>3张床</span>
+										<span>{{house.houseclass[3]}}</span>
 									</li>
 									<li>
 										<i class="iconfont icon-denglu1"></i>
-										<span>宜住5人</span>
+										<span>{{house.houseclass[4]}}</span>
 									</li>
 								
 							</ul>
-							<p>房屋户型：1室0厅1卫1厨0阳台</p>
+							<p>房屋户型：{{house.modelclass[0]}}室{{house.modelclass[1]}}厅{{house.modelclass[2]}}卫{{house.modelclass[3]}}厨{{house.modelclass[4]}}阳台</p>
 
 						</div>
 
@@ -91,76 +91,59 @@
 							<div>
 								<h3>
 									<i class="iconfont icon-dizhi"></i>
-									<span>成都玉林路</span>
+									<span>{{house.houseadress}}</span>
 								</h3>
 								<P>江苏省苏州市姑苏区狮山路58号汇豪国际</P>
-								<p>靠近地铁3号线/春熙路/景华小区/宁静温馨小家</p>
+								<p>
+									{{each house.tips item}}
+									<span>{{item}}</span>
+									{{/each}}
+								</p>
 							</div>
 							
 							<div>
 								<h4><i class="iconfont icon-zuji "></i>周边</h4>
-								<p>北京路步行街-5mi</p>
-								<p>大佛寺-北京路步行街内</p>
-								<p>骑楼群-5min</p>
+								{{each house.tips item}}
+								<p>{{item}}</p>
+								{{/each}}
 							</div>
 						</div>
 						<div index = '3' class="">可定日期</div>
 						<div index = '4' class="something">
-							<ul>
-								<li><i class="iconfont icon-ziyuan "></i>热水领淋浴</li>
-								<li><i class="iconfont "></i>空调</li>
-								<li><i class="iconfont "></i>无线网络</li>
-								<li><i class="iconfont "></i>门径系统</li>
-								<li><i class="iconfont "></i>洗衣机</li>
-								<li><i class="iconfont "></i>电梯</li>
-								<li><i class="iconfont "></i>冰箱</li>
-								<li><i class="iconfont "></i>暖气</li>
-								<li><i class="iconfont "></i>电视</li>
-								<li><i class="iconfont "></i>饮水设备</li>
-								<li><i class="iconfont "></i>香皂</li>
-								<li><i class="iconfont "></i>洗发水</li>
-								<li><i class="iconfont "></i>牙具</li>
-								<li><i class="iconfont "></i>毛巾</li>
-								<li><i class="iconfont "></i>拖鞋</li>
-								<li><i class="iconfont "></i>停车位</li>
-								<li><i class="iconfont "></i>允许吸烟</li>
-								<li><i class="iconfont "></i>允许带宠物</li>
-								<li><i class="iconfont "></i>允许聚会</li>
+							<ul id="equipmentWrap">
+								<li><i class="iconfont icon-linyu_"></i>热水领淋浴</li>
+								<li><i class="iconfont icon-xuehua"></i>空调</li>
+								<li><i class="iconfont icon-Group-"></i>无线网络</li>
+								<li><i class="iconfont icon-menjin"></i>门径系统</li>
+								<li><i class="iconfont icon-xiyiji"></i>洗衣机</li>
+								<li><i class="iconfont icon-dianti"></i>电梯</li>
+								<li><i class="iconfont icon-bingxiang"></i>冰箱</li>
+								<li><i class="iconfont icon-nuanqi"></i>暖气</li>
+								<li><i class="iconfont icon-dianshi"></i>电视</li>
+								<li><i class="iconfont icon-icon-1"></i>饮水设备</li>
+								<li><i class="iconfont icon-meizhuangtubiao-"></i>香皂</li>
+								<li><i class="iconfont icon-xifashui"></i>洗发水</li>
+								<li><i class="iconfont icon-yaju"></i>牙具</li>
+								<li><i class="iconfont icon-maojin"></i>毛巾</li>
+								<li><i class="iconfont icon-tuoxie"></i>拖鞋</li>
+								<li><i class="iconfont icon-tingchewei"></i>停车位</li>
+								<li><i class="iconfont icon-xiyan"></i>允许吸烟</li>
+								<li><i class="iconfont icon-chongwu"></i>允许带宠物</li>
+								<li><i class="iconfont icon-080juhui"></i>允许聚会</li>
 							</ul>
 						</div>
 						<div index = '5' class="comments">
-							<h3>近期评价</h3>
-							<ul>
-								<li>
-									<div>
-										<p>
-											<img src="/img/t1.jpg">
-										</p>
-										<p>
-											<font>尚恩</font>
-											<span>2019年3月</span>
-										</p>
-									
-									</div>
-									<p>位置很好交通便利,楼下就有个电影院也很方便,就是如果每个人能配个浴巾就好了</p>
-								</li>
+							<!-- 模板渲染评论 -->
+							<div id="commentWrap"></div>
 
-								<li>
-									<div>
-										<p>
-											<img src="/img/t3.jpg">
-										</p>
-										<p>
-											<font>尚恩</font>
-											<span>2019年3月</span>
-										</p>
-									
-									</div>
-									<p>位置很好交通便利,楼下就有个电影院也很方便,就是如果每个人能配个浴巾就好了</p>
-								</li>
-							</ul>
 						</div>
-						<div index = '6'>房东</div>
+						<div index = '6'>
+							<!-- 模板渲染房东信息 -->
+							<div class="master" id="masterWrap">
+								
+							</div>
+							
+						</div>
 					</div>
 					
 				</div>
@@ -190,6 +173,53 @@
 				<p>您暂时不会被收费</p>
 				
 			</div>
+		</script>
+
+		<!-- 房东信息渲染模板 -->
+		<script type="text/html" id="mastermodel">
+
+			<div class="touxiang"><a href="javascript:;"><img src="{{master.img}}"></a></div>
+
+			<div class="masterInfo">
+				<h5>{{master.username}}</h5>
+				<ul>
+					<li>
+						<i class="iconfont icon-dizhi1"></i>
+						<span>{{master.adress}}</span>
+					</li>
+					<li>
+						<i class="iconfont icon-icon-life-graduation"></i>
+						<span>{{master.work}}</span>
+					</li>
+					<li>
+						<i class="iconfont icon-renzheng"></i>
+						<span>已认证</span>
+					</li>
+				</ul>
+			</div>
+		</script>
+
+		<!-- 评论信息渲染模板 -->
+		<script type="text/html" id="commentModle">
+
+			<h3>近期评价:</h3>
+			<ul>
+				{{each comment item}}
+				<li>
+					<div>
+						<p>
+							<img src="{{item.userimg}}">
+						</p>
+						<p>
+							<font>{{item.username}}</font>
+							<span>{{item.time}}</span>
+						</p>
+					</div>
+					<p>{{item.commenttext}}</p>
+				</li>
+				{{/each}}
+			</ul>
+			
 		</script>
 
 	<script src="/libs/require/require.min.js" data-main="/js/detail.js"></script>

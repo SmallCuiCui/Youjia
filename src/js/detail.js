@@ -6,7 +6,7 @@ require(['config'],()=>{
 			}
 			render(){
 				let id = Number(location.search.slice(4));
-				console.log(id);
+				// 渲染房源详情
 				$.ajax({
 					url:url.phpBaseUrl + "detail.php",
 					type:'get',
@@ -14,13 +14,66 @@ require(['config'],()=>{
 					data:{id},
 					success:data =>{
 						let house = JSON.parse(data.res_data);
+						house.houseclass = house.houseclass.split(',');
+						house.tips = house.tips.split(',');
+						house.modelclass = house.modelclass.split(',');
+						house.equipment = house.equipment.split(',');
+						house.remarks = house.remarks.split(',');
+						// house.comments = house.comments.split(',');
 						this.data = house;
+
 						console.log(house)
 						$("#houseInfoWrap").html(template("houseInfoModle",{house}))
 
+						house.equipment.forEach((item,index)=>{
+							if(item == 1){
+								$("#equipmentWrap li").eq(index).addClass('have');
+							}
+						})
 						this.bindEvents();
 						// 房源预览图片切换效果
 						this.imgsBindEvent();
+
+						this.renderComment();
+						this.renderMaster();
+					}
+				})
+			}
+
+			// 渲染评论
+			renderComment(){
+				let comments = this.data.comments;
+				$.ajax({
+					url:url.phpBaseUrl+"comment.php",
+					data:{comments},
+					type:'get',
+					dataType:'json',
+					success:data =>{
+						if(data.res_code === 1){
+							let comment = [];
+							data.res_data.forEach(item=>{
+								comment.push(JSON.parse(item));
+							})
+							console.log(comment);
+							$("#commentWrap").html(template("commentModle",{comment}))
+						}
+						
+					}
+				})
+			}
+			renderMaster(){
+				let masterId = this.data.userid;
+				$.ajax({
+					url:url.phpBaseUrl+"master.php",
+					data:{masterId},
+					type:'post',
+					dataType:'json',
+					success:data =>{
+						if(data.res_code === 1){
+							let master = JSON.parse(data.res_data);
+							$("#masterWrap").html(template("mastermodel",{master}))
+						}
+						
 					}
 				})
 			}
@@ -29,7 +82,6 @@ require(['config'],()=>{
 
 				//固定订单框
 				document.onscroll = function(e){
-					console.log(1);
 					var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 					if(Number(scrollTop)>300){
 						document.querySelector('.orderBox').classList.add('ac');
@@ -99,9 +151,7 @@ require(['config'],()=>{
 						//为当前点击的模块导航标签添加选中样式
 						target.classList.add('ac');
 
-						console.log(divs);
 						divs.forEach(function(item){
-							console.log(item.getAttribute('index'));
 							if(item.getAttribute('index') == index){
 								item.classList.add('ac');
 							}else{
