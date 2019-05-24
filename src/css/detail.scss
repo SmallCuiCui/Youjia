@@ -119,8 +119,8 @@
 .houseInfo .housecont .orderModel .model{
 	position: relative;
 	width: 80%;
-	height: 300px;
-	overflow: hidden;
+	// height: 300px;
+	// overflow: hidden;
 	margin: 0 auto;
 }
 .houseInfo .housecont .orderModel .model>div{
@@ -128,7 +128,7 @@
 	display: none;
 	width: 100%;
 	min-height: 200px;
-	overflow:auto;
+	// overflow:auto;
 	background-color: white;
 	/*border: 1px solid red;*/
 	top: 0;
@@ -167,6 +167,7 @@
 	display: flex;
 	width: 100%;
 	height: 100px;
+	margin-bottom:10px;
 	align-items: center;
 	justify-content: space-around;
 }
@@ -292,6 +293,18 @@
 				margin-right:20px;
 			}
 		}
+	}
+}
+
+// 日历显示
+.date-wrap{
+	display:block;
+	top:20px;
+	left:100px;
+	h3{
+		font-size:20px !important;
+		height:50px !important;
+		line-height:50px !important;
 	}
 }
 

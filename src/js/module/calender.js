@@ -56,6 +56,7 @@ define(["jquery"],$=>{
 
 	function calender(date,num){
 		var title = document.getElementById("title");
+		console.log(title);
 		var datelist = document.getElementById('datelist');
 		var str="";//日期字符串
 

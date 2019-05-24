@@ -36,6 +36,11 @@ require(['config'],()=>{
 
 						this.renderComment();
 						this.renderMaster();
+
+						// 引入日历表
+						require(['calender'],function(){
+							
+						})
 					}
 				})
 			}

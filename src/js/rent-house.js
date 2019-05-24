@@ -1,12 +1,33 @@
 	require(['config'],()=>{
-		require(['header','cookie'],(header)=>{
+		require(['header','url','cookie'],(header,url)=>{
 			class Rent{
 				constructor(){
+					
+					this.Submit = true;
+					// 房源数据,初始化
+					this.data = {
+						"housename":"",
+						"price":"",
+						"discript":"",
+						"imgs":"",
+						"tips":"",
+						"equipment":"",
+						"modelclass":"",
+						"houseclass":"",
+						"remarks":"",
+						"houseadress":"",
+						"detailAdress":"",
+						"userid":"",
+					};
+
 					this.checkLogin();
 					this.bindEvents();
 				}
 
 				bindEvents(){
+
+					let _this = this;
+
 					//添加地址标签
 					$('.addAdressBtn').click(function(){
 						let text = document.querySelector('.addtipInput').value;
@@ -83,32 +104,126 @@
 								document.querySelector('.imgsIn').querySelector('.numIng').style.display = 'none';
 							}
 						}
-					})
+					});
+
+					// 点击发布房源，获取所有房源数据，并存储到数据库
+					$("#subBtn").on('click', () =>{
+						
+						// 获取地址
+						$("#addAdress input").each(function(index){
+							if(index===0 || index === 1){
+								_this.data.houseadress += $(this).val();
+							}
+							_this.data.detailAdress += $(this).val();
+						})
+
+						// 获取房源标签
+						$("#adress_box li").each(function(index){
+							let text = $(this).text();
+							text = text.substring(0,text.length-1);
+							
+							if(index === 0){
+								_this.data.tips += text ;
+							}else{
+								_this.data.tips += "," + text;
+							}
+						})
+
+						// 获取房屋类型
+						$("#houseclass option:selected").each(function(index){
+							if(index === 0){
+								_this.data.houseclass += $(this).text() ;
+							}else{
+								_this.data.houseclass += "," + $(this).text();
+							}
+						})
+
+						// 获取房屋户型
+						$("#modelclass option:selected").each(function(index){
+							if(index === 0){
+								_this.data.modelclass += $(this).text() ;
+							}else{
+								_this.data.modelclass += "," + $(this).text();
+							}
+						})
+						// 房源名称
+						_this.data.housename = $("#houseName").val();
+						// 房源描述
+						_this.data.discript = $("#houseDiscript").val();
+						_this.data.remarks = $("#houseRemark").val();
+
+						// 获取配套设施
+						$("#equipInfo li").each(function(index){
+							if($(this).hasClass('slc')){
+								_this.data.equipment += "1,";
+							}else{
+								_this.data.equipment += "0,";
+							}
+						})
+						_this.data.equipment = _this.data.equipment.substring(0,_this.data.equipment.length-1);
+
+						// 获取图片
+						_this.data.imgs = "house4";
+
+						// 获取价格规格
+						_this.data.price = $("#priceInput").val();
+
+						Object.keys(_this.data).forEach(function(key,value){
+							if(!_this.data[key]){
+								_this.Submit = false;
+								return;
+							}
+						})
+						if(_this.Submit){
+							// 数据完善，可以提交房源，插入到数据库
+							let data = _this.data;
+							// let data = JSON.stringify(_this.data);
+// 
+							$.ajax({
+								url: url.phpBaseUrl + 'addHouse.php',
+								type: 'get',
+								dataType: 'json',
+								data: {data},
+								success:data =>{
+									console.log(data);
+								}
+							});
+							
+						}else{
+							// 数据不完善，不能进行提交
+							alert('请完善所有房源信息再提交！');
+						}
+
+						// console.log(_this.data);
+					});
 				}
 
 				// 检查是否登陆，登陆状态下才能进行房源发布
 				checkLogin(){
 					if(!$.cookie("user")){
 
-					$('.confirm_wrap').show();
-					$('.confirm_box').show(function(){
-						$(this).animate({"top":"200px","right":"500px"},500);
-					});
+						$('.confirm_wrap').show();
+						$('.confirm_box').show(function(){
+							$(this).animate({"top":"200px","right":"500px"},500);
+						});
 
-					$('.toLogin').click(function(){
-						$('.confirm_box').hide();
-						$(".confirm_wrap").hide();
-						$('.aside-wrap').show();
-					});
+						$('.toLogin').click(function(){
+							$('.confirm_box').hide();
+							$(".confirm_wrap").hide();
+							$('.aside-wrap').show();
+						});
 
-					$('.toHome').click(function(){
-						$('.confirm_box').hide();
-						$('.confirm_wrap').hide();
-						window.location.href = 'file:///D:/%E6%AF%95%E8%AE%BE/gitfile/Youjia/home.html';
-					});
+						$('.toHome').click(function(){
+							$('.confirm_box').hide();
+							$('.confirm_wrap').hide();
+							window.location.href = 'file:///D:/%E6%AF%95%E8%AE%BE/gitfile/Youjia/home.html';
+						});
+					}else{
+						this.user = JSON.parse(localStorage.getItem("userInfo"));
+						this.data.userid = this.user.userid;
+					}
+				}
 	}
-}
-}
-new Rent();
-})
+	new Rent();
 	})
+})
