@@ -29,6 +29,7 @@ define(['jquery',"template","login","cookie"],($,templat,Login)=>{
 			this.islogin = $.cookie("user");
 			if(!this.islogin){//未登录 显示登录注册
 				$(".login-li").show();
+				$(".self-li").hide();
 			}else{//登录时显示个人中心
 				$(".self-li").show();
 				$(".login-li").hide();

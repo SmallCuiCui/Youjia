@@ -1,16 +1,54 @@
 require(['config'],()=>{
-	require(['header'],(header)=>{
+	require(['header',"template","url"],(header,template,url)=>{
 		class Story{
 			constructor(){
 				this.render();
 				
+				// 初始化新故事的属性
+				this.newStory = {
+					"userid":"",
+					"theme":"",
+					"storytext":"",
+					"image":"",
+					"adress":"",
+					"time":""
+				}
+				// 可发表标识，数据为空时不能发表成功
+				this.publish = true;
 			}
-			// 获取数据，渲染故事
+			// 获取数据，渲染故事,同时渲染故事下面的评论
 			render(){
-				// 
-				this.bindEvents();
+				$.ajax({
+					url:url.phpBaseUrl + 'story.php',
+					data:{},
+					type:'get',
+					data: {operation:"selectAll"},
+					dataType:"json",
+					success:data=>{
+						
+						let list = [];
+						data.res_data.forEach(item=>{
+							item = JSON.parse(item);
+							// 处理评论数据，此时为字符串，转成一个数组
+							if(item["comments"]){
+								let comments = JSON.parse(item["comments"]);
+								item["comments"] = [];
+								comments.forEach(itemc=>{
+									item["comments"].push(JSON.parse(itemc));
+								})
+							}
+							list.push(item);
+						})
+
+						$("#storyWrap").html(template("storyModle",{list}));
+
+						this.bindEvents();
+					}
+				})
+				
 			}
 			bindEvents(){
+				let _this = this;
 
 				//点击发表故事
 				$('#newStoryBtn').click(function(){
@@ -41,16 +79,19 @@ require(['config'],()=>{
 
 					let li = document.createElement('li');
 					li.innerHTML = `<img src=${_src}>`;
+					_this.newStory.image = _src;
 
 					document.querySelector('.chatuBox').appendChild(li);
 
 				})
-				//点击立即发表
+				//点击立即发表,进行故事的发表
 				$('.okBtn').click(function(){
-					let zhuti = document.querySelector('.zhuti').value;
-					let didian = document.querySelector('.didian').value;
-					let neirong = document.querySelector('.neirong').value;
+					// 获取内容
+					_this.newStory.theme = document.querySelector('.zhuti').value;
+					_this.newStory.adress = document.querySelector('.didian').value;
+					_this.newStory.storytext = document.querySelector('.neirong').value;
 
+					// 获取当前时间
 					let date = new Date();
 					var year = date.getFullYear(),
 					month = date.getMonth() + 1,
@@ -58,31 +99,39 @@ require(['config'],()=>{
 					h = date.getHours(),
 					m = date.getMinutes();
 
-					let _html = `
-						<div class="modle">
-						<div class="storyCon">
-						<ul>
-						<li><img src=${_src}></li>
-						</ul>
+					_this.newStory.time = year+"/"+month+"/"+day+" "+h+":"+m;
+					// 获取当前登录用户id
+					_this.newStory.userid = JSON.parse(localStorage.getItem("userInfo")).userid;
+					let story = _this.newStory;
 
-						<div class="contentShow">
-						<h4>${zhuti}
-						<i class="iconfont icon-dizhi1">${didian}</i>
-						<span>${year}/${month}/${day} ${h}:${m}</span>
-						</h4>
-						<p>${neirong}</p>
-						<div class="zanBtn">
-						<span><i class="iconfont icon-dianzan11"></i>点赞</span>
-						<span><i class="iconfont icon-xiaoxi"></i>评论</span>
-						<span><i class="iconfont icon-shoucang"></i>浏览</span>
-						</div>
-						</div>
-						</div>
-						</div>
-					`
+					Object.keys(story).forEach(function(key,value){
+						if(!story[key]){
+							_this.publish = false;
+							return;
+						}
+					})
 
-					document.querySelector('.storys_wrap').innerHTML += _html;
-					$('.new_story').hide();
+					if(_this.publish){//成功发表故事
+						$.ajax({
+							url: url.phpBaseUrl + 'story.php',
+							type: 'get',
+							dataType: 'json',
+							data: {operation:story},
+							success:data=>{
+								if(data.res_code === 1){
+									alert(data.res_message);
+									_this.render();
+								}else{
+									alert(data.res_message);
+								}
+
+								$('.new_story').hide();
+							}
+						});
+					}else{
+						alert("请完善故事信息再进行发表！");
+					}
+					
 				})
 
 
@@ -101,9 +150,51 @@ require(['config'],()=>{
 							target.className = '';
 						}
 					}
+				});
+
+				// 点击评论图标，显示该故事下的评论
+				$(".pinglun").on("click",function(){
+					$(this).parents(".modle").find(".commentsWrap").toggleClass('hide');
+				});
+
+				// 点击发表评论
+				$(".postBtn").on("click",function(){
+					let comment={};
+					comment.commenttext = $(this).parents(".postComment").find("textarea").val();
+					comment.userid = JSON.parse(localStorage.getItem("userInfo")).userid;
+					comment.username = JSON.parse(localStorage.getItem("userInfo")).username;
+					comment.userimg = JSON.parse(localStorage.getItem("userInfo")).img;
+					comment.targetid = Number($(this).parents('.modle').attr("story-index"));
+					comment.commentclass = "story";
+					// 获取当前时间
+					let date = new Date();
+					var year = date.getFullYear(),
+					month = date.getMonth() + 1,
+					day = date.getDate();
+					comment.time = year+"-"+month+"-"+day;
+
+					if(comment.commenttext){
+						let data = comment;
+						$.ajax({
+							url: url.phpBaseUrl + 'addComment.php',
+							type: 'get',
+							dataType: 'json',
+							data: {data},
+							success:data =>{
+								if(data.res_code === 1){
+									_this.render();
+								}else{
+									alert(data.res_message);
+								}
+							}
+						});
+					}else{
+						alert("请输入评论内容！");
+					}
 				})
 			}
 		}
+		
 		new Story();
 	})
 })

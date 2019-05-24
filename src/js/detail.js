@@ -19,10 +19,9 @@ require(['config'],()=>{
 						house.modelclass = house.modelclass.split(',');
 						house.equipment = house.equipment.split(',');
 						house.remarks = house.remarks.split(',');
-						// house.comments = house.comments.split(',');
 						this.data = house;
 
-						console.log(house)
+						// console.log(house)
 						$("#houseInfoWrap").html(template("houseInfoModle",{house}))
 
 						house.equipment.forEach((item,index)=>{
@@ -47,10 +46,10 @@ require(['config'],()=>{
 
 			// 渲染评论
 			renderComment(){
-				let comments = this.data.comments;
+				let houseid = this.data.houseid;
 				$.ajax({
 					url:url.phpBaseUrl+"comment.php",
-					data:{comments},
+					data:{houseid},
 					type:'get',
 					dataType:'json',
 					success:data =>{
@@ -59,7 +58,7 @@ require(['config'],()=>{
 							data.res_data.forEach(item=>{
 								comment.push(JSON.parse(item));
 							})
-							console.log(comment);
+							// console.log(comment);
 							$("#commentWrap").html(template("commentModle",{comment}))
 						}
 						

@@ -170,14 +170,13 @@
 
 						Object.keys(_this.data).forEach(function(key,value){
 							if(!_this.data[key]){
-								_this.Submit = false;
-								return;
+								// _this.Submit = false;
+								// return;
 							}
 						})
 						if(_this.Submit){
 							// 数据完善，可以提交房源，插入到数据库
 							let data = _this.data;
-							// let data = JSON.stringify(_this.data);
 // 
 							$.ajax({
 								url: url.phpBaseUrl + 'addHouse.php',
@@ -185,7 +184,15 @@
 								dataType: 'json',
 								data: {data},
 								success:data =>{
-									console.log(data);
+									if(data.res_code === 1){
+										if(confirm(data.res_message + " 立即查看?")){
+											location.href="/htmls/self.html";
+										}else{
+											location.reload();
+										}
+									}else{
+										alert(data.res_message);
+									}
 								}
 							});
 							

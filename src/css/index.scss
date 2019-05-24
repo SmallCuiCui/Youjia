@@ -5,7 +5,7 @@
 
 // 导航标记
 .menu{
-	li:nth-child(1){
+	>li:nth-child(1){
 		background-color: rgba(240, 84, 106,.7);
 		border-radius: 5px;
 	}

@@ -167,68 +167,112 @@ body{
 	width:100%;
 	height:100%;
 	overflow:visible;
-}
-.cont-bot .cont-bot-rigth>ul>li{
-	position:absolute;
-	top:0;
-	left:0;
-	display: none;
-	padding: 20px;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li>div{
-	border: 1px solid rgba(0,0,0,.1);
-	margin-bottom: 10px;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div h3{
-	height: 50px;
-	line-height: 50px;
-	font-family: "宋体";
-	font-size: 18px;
-	color: #333333;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div h3 i{
-	font-size: 16px !important;
-	color: #f0546a !important;
-	margin: 0 5px;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div h3 span{
-	color: #999999;
-	font-weight: normal;
-	font-size: 12px;
-	margin-left: 10px;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div h3 font{
-	font-weight: normal;
-	cursor: pointer;
-	float: right;
-	margin-right: 30px;
-	font-size: 14px;
-	color: #f0546a;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div h3 font.save{
-	/*color:rgba(240, 84, 106,.6);*/
-	display: none;
-	color: #4884f2;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li>div>div{
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: 0 5px;
-	box-sizing: border-box;
-}
-.cont-bot .cont-bot-rigth ul .user-info-li div div p{
-	width: 48%;
-	height: 40px;
-	padding-left: 10px;
-	font-size: 14px;
-	letter-spacing: 1px;
-	box-sizing: border-box;
-	margin-bottom: 10px;
-	line-height:40px;
-	color: #666666;
-	background-color: rgba(0,0,0,.07);
+	&>li{
+		position:absolute;
+		top:0;
+		left:0;
+		display: none;
+		padding: 20px;
+	}
+	// 个人资料模块样式
+	.user-info-li{
+		&>div{
+			border: 1px solid rgba(0,0,0,.1);
+			margin-bottom: 10px;
+			&>div{
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				padding: 0 5px;
+				box-sizing: border-box;
+			}
+		}
+		div{
+			h3{
+				height: 50px;
+				line-height: 50px;
+				font-family: "宋体";
+				font-size: 18px;
+				color: #333333;
+				i{
+					font-size: 16px !important;
+					color: #f0546a !important;
+					margin: 0 5px;
+				}
+				span{
+					color: #999999;
+					font-weight: normal;
+					font-size: 12px;
+					margin-left: 10px;
+				}
+				font{
+					font-weight: normal;
+					cursor: pointer;
+					float: right;
+					margin-right: 30px;
+					font-size: 14px;
+					color: #f0546a;
+					&.save{
+						/*color:rgba(240, 84, 106,.6);*/
+						display: none;
+						color: #4884f2;
+					}
+				}
+			}
+			div{
+				p{
+					width: 48%;
+					height: 40px;
+					padding-left: 10px;
+					font-size: 14px;
+					letter-spacing: 1px;
+					box-sizing: border-box;
+					margin-bottom: 10px;
+					line-height:40px;
+					color: #666666;
+					background-color: rgba(0,0,0,.07);
+				}
+			}
+		}
+	}
+
+	// 个人故事模块样式
+	.user-story-li{
+		display:flex;
+		justify-content:space-between;
+		flex-wrap:wrap;
+		dl{
+			width:30%;
+			margin-bottom:20px;
+			color:#333333;
+			dt{
+				height:100px;
+				width:100%;
+				img{
+					width:100%;
+					height:100%;
+					vertical-align:top;
+				}
+			}
+			h6{
+				font-size:16px;
+				height:32px;
+				line-height:32px;
+				span{
+					color:#999999;
+					float:right;
+					font-size:12px;
+				}
+			}
+			dd{
+				font-size:14px;
+				line-height:18px;
+				height:90px;
+				overflow:hidden;
+			}
+		}
+	}
 }
 .cont-bot .cont-bot-rigth ul .user-info-li div div p:last-child{
 	display: block;

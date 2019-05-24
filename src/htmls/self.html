@@ -40,13 +40,13 @@
 							</li>
 							<li>
 								<i class="iconfont icon-renzheng"></i>
-								<span>未认证</span>
+								<span>已认证</span>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="cont-top-right">
-					<p>编辑</p>
+					<p id="outLogin">退出登录</p>
 					<p class="fabiaoBtn">发表故事</p>
 				</div>
 			</div>
@@ -96,18 +96,18 @@
 							<div class="user-info">
 								<h3><i class="iconfont icon-hongyuan-copy-copy"></i>基本信息<font class="save">保存</font><font class="edit">编辑</font></h3>
 								<div class="info">
-									<p>用户名：<input type="text" name="user-name" value="{{data.username}}"></p>
-									<p>密码：<input type="password" name="user-pas" value="{{data.psw}}"></p>
-									<p>手机号码：<input type="text" name="user-num" value="{{data.phone}}"></p>
-									<p>邮箱：<input type="text" name="user-email" value="{{data.email}}"></p>
+									<p>用户名：<input type="text" name="user-name" value="{{data.username}}" id="username"></p>
+									<p>密码：<input type="password" name="user-pas" value="{{data.psw}}" id="psw"></p>
+									<p>手机号码：<input type="text" name="user-num" value="{{data.phone}}" id="phone"></p>
+									<p>邮箱：<input type="text" name="user-email" value="{{data.email}}" id="email"></p>
 								</div>
 								
 							</div>
 							<div class="id-info">
 								<h3><i class="iconfont icon-hongyuan-copy-copy"></i>身份信息<span>仅用于安全环节，其他情况将严格为您保密</span><font class="save">保存</font><font class="edit">编辑</font></h3>
 								<div class="info">
-									<p>真实姓名：<input type="text" name="user-tName" value="{{data.trueName}}"></p>
-									<p>身份证号：<input type="text" name="user-id" value="{{data.identityid}}"></p>
+									<p>真实姓名：<input type="text" name="user-tName" value="{{data.trueName}}" id="trueName"></p>
+									<p>身份证号：<input type="text" name="user-id" value="{{data.identityid}}" id="identityid"></p>
 								</div>
 							</div>
 							<div class="social-info">
@@ -125,13 +125,13 @@
 											<a href="#"><i class="iconfont icon-weibo"></i></a>
 										</li>
 									</ul>
-									<p>年龄：<input type="text" name="user-age" value="{{data.age}}"></p>
-									<p>所在地：<input type="text" name="user-ad" value="{{data.address}}"></p>
-									<p>出生日期：<input type="text" name="user-brith" value="未填写"></p>
-									<p>血型：<input type="text" name="user-blood" value="{{data.blood}}"></p>
-									<p>工作：<input type="text" name="user-work" value="未填写"></p>
-									<p>爱好：<input type="text" name="user-like" value="未填写"></p>
-									<p>个性：<input type="text" name="user-self" value="{{data.personality}}"></p>
+									<p>年龄：<input type="text" name="user-age" value="{{data.age}}" id="age"></p>
+									<p>所在地：<input type="text" name="user-ad" value="{{data.adress}}" id="adress"></p>
+									<p>出生日期：<input type="text" name="user-brith" value="{{data.birthday}}" id="birthday"></p>
+									<p>血型：<input type="text" name="user-blood" value="{{data.blood}}" id="blood"></p>
+									<p>工作：<input type="text" name="user-work" value="{{data.work}}" id="work"></p>
+									<p>爱好：<input type="text" name="user-like" value="{{data.hobby}}" id="hobby"></p>
+									<p>个性：<input type="text" name="user-self" value="{{data.personality}}" id="personality"></p>
 								</div>
 							</div>
 						</li>
@@ -139,17 +139,30 @@
 						<li class="order">
 							<div class="orders-con">订单内容</div>
 						</li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<!--  -->
+						<li>点评</li>
+						<li>收藏</li>
+						<li class="user-story-li" id="storyWrap">
+							
+						</li>
+						<li>钱包</li>
+						<li>消息</li>
+						<li>房源</li>
 					</ul>
 
 				</div>
 			</div>
 		</div>
+	</script>
+
+	<script type="text/html" id="storyModule">
+		{{each story item}}
+		<dl>
+			<dt><img src="{{item.image}}"></dt>
+			<h6>{{item.theme}}<span>{{item.time}}</span></h6>
+			<dd>{{item.storytext}}</dd>
+		</dl>
+		{{/each}}
 	</script>
 	<!-- 内容区 -->
 

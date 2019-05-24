@@ -193,7 +193,6 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 					// 访问数据库，插入数据
 					let phone = _this.phone,
 						psw = _this.psw;
-					console.log(222);
 					$.ajax({
 						url:url.phpBaseUrl + "register.php",
 						type:'post',

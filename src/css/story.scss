@@ -186,6 +186,7 @@ body{
 }
 .story .modle .storyCon ul li img{
 	height: 200px;
+	width:100%;
 }
 
 .story .modle .storyCon .contentShow{
@@ -238,4 +239,91 @@ body{
 }
 .story .modle .storyCon .contentShow div span:hover{
 	color: rgba(240,85,105,1);
+}
+
+// 故事下的评论样式
+.story .modle .commentsWrap{
+	max-height:150px;
+	display:flex;
+	&.hide{
+		display:none;
+	}
+	.postComment{
+		flex:3;
+		margin-left:10px;
+		font-size:14px;
+		textarea{
+			width:100%;
+			height:80px;
+			padding:10px;
+			box-sizing:border-box;
+			border:none;
+			outline:none;
+		}
+		a{
+			display:block;
+			height:50px;
+			line-height:50px;
+			text-align:center;
+			color:white;
+			letter-spacing:2px;
+			background-color: rgba(240, 85, 105, 0.7);
+		}
+	}
+	ul{
+		flex:6;
+		overflow:auto;
+	}
+	ul li{
+		border-bottom: 1px solid rgba(0,0,0,.1);
+		margin-bottom: 20px;
+	}
+	ul li>div{
+		height:50px;
+		display:flex;
+	}
+	ul li>div>a{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: inline-block;
+		overflow: hidden;
+
+		img{
+			width: 50px;
+			height:100%;
+			display: inline-block;
+		}
+	}
+	ul li>div>div{
+		display:inline-block;
+		vertical-align:top;
+		margin-left: 10px;
+		height:50px;
+		line-height:50px;
+		flex:1;
+		margin-right:20px;
+
+		font{
+			display:inline-block;
+			width:100%;
+			height: 30px;
+			line-height: 30px;
+			font-size: 18px;
+			color: #333333;
+			span{
+				float:right;
+				color:#999999;
+				font-size: 12px;
+			}
+		}
+	}
+	
+	ul li>p:last-child{
+		margin-bottom: 10px;
+		margin-top:10px;
+		padding-left:60px;
+		color: #333333;
+		font-size:14px;
+	}
 }

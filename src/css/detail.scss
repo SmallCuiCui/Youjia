@@ -227,6 +227,9 @@
 .houseInfo .housecont .orderModel .model .comments h3{
 	border-bottom: 1px solid rgba(0,0,0,.1);
 	margin-bottom: 20px;
+	height:40px;
+	line-height:40px;
+	font-size:20px;
 }
 .houseInfo .housecont .orderModel .model .comments ul li{
 	border-bottom: 1px solid rgba(0,0,0,.1);
@@ -250,16 +253,18 @@
 }
 .houseInfo .housecont .orderModel .model .comments ul li div p font{
 	display:block;
-	height: 35px;
-	line-height: 35px;
+	height: 30px;
+	line-height: 30px;
 	font-size: 16px;
 	color: #333333;
 }
 .houseInfo .housecont .orderModel .model .comments ul li p span{
 	font-size: 12px;
 }
-.houseInfo .housecont .orderModel .model .comments ul li p:last-child{
+.houseInfo .housecont .orderModel .model .comments ul li>p:last-child{
 	margin-bottom: 10px;
+	margin-top:10px;
+	padding-left:60px;
 	color: #333333;
 }
 
