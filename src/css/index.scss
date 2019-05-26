@@ -294,6 +294,7 @@
 }
 .main-content .price_first .hose_show dl:hover p{
 	margin-top: 0px;
+	opacity:1;
 }
 .main-content .price_first .hose_show dl dt{
 	position: absolute;
@@ -301,6 +302,7 @@
 	height: 100%;
 	cursor: pointer;
 	background-size: 100%;
+	background-clip:content-box;
 }
 .main-content .price_first .hose_show dl dd{
 	height: 130px;
@@ -337,7 +339,8 @@
 	font-size: 18px;
 	color: white;
 	margin-top: 46px;
-	transition: 1s;
+	opacity:0;
+	transition: all 0.7s;
 }
 
 .main-content .modle-box{

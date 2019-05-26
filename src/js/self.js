@@ -19,7 +19,6 @@ require(['config'],()=>{
 			getData(){
 				// 用户信息从本地存储获得
 				this.data.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
 				// 订单，故事，房源，评论，收藏 从数据库获取
 				let userid = this.data.userInfo.userid;
 				let collections = this.data.userInfo.collection;
@@ -33,11 +32,17 @@ require(['config'],()=>{
 						let alldata = data.res_data;
 						for(var key in alldata){
 							let list = JSON.parse(alldata[key]);
-							list.forEach(item=>{
-								this.data[key].push(JSON.parse(item));
-							})
+							if(key!=="user"){
+								list.forEach(item=>{
+									this.data[key].push(JSON.parse(item));
+								})
+							}else{
+								// 从数据库获取到用户数据后，更新本地存储，避免本地数据与数据库不一致
+								let userInfo = JSON.parse(list[0]);
+								localStorage.setItem('userInfo',JSON.stringify(userInfo));
+							}
+							
 						}
-
 						console.log(this.data);
 						this.render();
 						this.bindEvents();
@@ -55,13 +60,22 @@ require(['config'],()=>{
 				//初始下表单不可编辑
 				$('.cont-bot-rigth input').attr('disabled',true);
 
+
+				data = this.data;
 				// 渲染个人订单
-				// 渲染个人房源
+				// 渲染收藏房源
+				$("#collectionWrap").html(template("collectionModule",{data}))
+
+
 				// 渲染个人评价
+				$("#commentWrap").html(template("commentModule",{data}))
+
 				// 渲染个人故事
-				let story = this.data.story;
-				console.log(story);
-				$("#storyWrap").html(template("storyModule",{story}))
+				$("#storyWrap").html(template("storyModule",{data}));
+
+				// 渲染个人房源
+				$("#houseWrap").html(template("houseModule",{data}))
+
 			}
 			bindEvents(){ 
 				let _this = this;
@@ -116,7 +130,9 @@ require(['config'],()=>{
 						dataType: 'json',
 						data: {userInfo},
 						success:data=>{
-							console.log(data);
+							if(data.res_code===1){
+								alert(data.res_message);
+							}
 						}
 					});
 					localStorage.setItem('userInfo',JSON.stringify(userInfo));

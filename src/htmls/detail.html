@@ -110,7 +110,7 @@
 						</div>
 						<div index = '3' class="">
 							<!-- 日历容器 -->
-							<div class="date-wrap">
+							<div class="date-wrap selectable">
 								<div class="header">
 									<span id="preMonth">上一月</span>
 									<h3 id="title"></h3>
@@ -154,7 +154,9 @@
 						</div>
 						<div index = '5' class="comments">
 							<!-- 模板渲染评论 -->
-							<div id="commentWrap"></div>
+							<div id="commentWrap">
+								<h3>近期没有评价记录</h3>
+							</div>
 
 						</div>
 						<div index = '6'>
@@ -170,6 +172,7 @@
 
 			</div>
 			
+			<!-- 订单框 -->
 			<div class="orderBox">
 				<h4>
 					<i class="iconfont icon-meiyuan"></i><span>210<font>每晚</font></span>
@@ -177,16 +180,32 @@
 				<p><i class="iconfont "></i>满七天9折</p>
 				<div class="intime">
 					<h6>入住日期</h6>
-					<div>
-						<span>入住日期</span>
-						<i class="iconfont ">----></i>
-						<font>退房日期</font>
+					<div class="selectBox">
+						<input type="text" class="selectDate" id="selectDate" placeholder="点击选择入住日期"></input>
 					</div>
+					<div class="date-wrap data-wrapS">
+						<div class="header">
+							<span id="preMonth">上一月</span>
+							<h3 id="title"></h3>
+							<span id="nextMonth">下一月</span>
+						</div>
+						<ul class="nav">
+							<li>日</li>
+							<li>一</li>
+							<li>二</li>
+							<li>三</li>
+							<li>四</li>
+							<li>五</li>
+							<li>六</li>
+						</ul>
+						<ul class="datelist" id="datelist"></ul>
+					</div>
+					<!-- 日历 -->
 				</div>
 				<div class="numbers">
 					<h6>入住人数</h6>
 					<p>
-						<font>-</font><span>1人</span><font>+</font>
+						<font id="jianBtn">-</font><span id="numWrap">1</span><font id="jiaBtn">+</font>
 					</p>
 				</div>
 				<a href="javascript:;" id="orderBtn">预定</a>

@@ -156,23 +156,34 @@ body{
 }
 .cont-bot .cont-bot-rigth{
 	width: 73%;
-	height:800px;
+	min-height:800px;
 	background-color: white;
 	border: 1px solid #e0e0e0;
 	box-sizing: border-box;
-	overflow:visible;
 }
-.cont-bot .cont-bot-rigth ul{
+.cont-bot .cont-bot-rigth>ul{
 	position: relative;
 	width:100%;
 	height:100%;
 	overflow:visible;
 	&>li{
 		position:absolute;
+		width:100%;
 		top:0;
 		left:0;
 		display: none;
 		padding: 20px;
+
+		.notips{
+			margin:100px auto;
+			height:100px;
+			line-height:100px;
+			text-align:center;
+			width:200px;
+			border:1px solid #cccccc;
+			font-size:14px;
+			color:rgba(240, 84, 106, 1);
+		}
 	}
 	// 个人资料模块样式
 	.user-info-li{
@@ -237,17 +248,192 @@ body{
 		}
 	}
 
+	// 个人点评模块
+	.user-comment-li{
+		width:100%;
+		box-sizing:border-box;
+		padding:0;
+		ul{
+			background-color:#F5F5F5;
+			overflow:auto;
+			li{
+				padding:20px;
+				margin-bottom: 20px;
+				background-color:white;
+				padding-bottom:20px;
+			}
+		}
+		ul li .comment-top{
+			height:50px;
+			display:flex;
+			>a{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				display: inline-block;
+				overflow: hidden;
+
+				img{
+					width: 50px;
+					height:100%;
+					display: inline-block;
+				}
+			}
+			div{
+				display:inline-block;
+				vertical-align:top;
+				margin-left: 10px;
+				height:50px;
+				line-height:50px;
+				flex:1;
+				margin-right:20px;
+
+				font{
+					display:inline-block;
+					width:100%;
+					height: 30px;
+					line-height: 30px;
+					font-size: 18px;
+					color: #333333;
+					span{
+						float:right;
+						color:#999999;
+						font-size: 12px;
+					}
+				}
+			}
+		}
+		ul li>p{
+			margin-bottom: 10px;
+			margin-top:10px;
+			color: #333333;
+			font-size:14px;
+			span{
+				font-family:"微软雅黑";
+				font-weight:bold;
+			}
+		}
+		ul li .comment-bot{
+			width:100%;
+			background-color:#F5F5F5;
+			
+			a{
+				display:inline-block;
+				width:100px;
+				height:100px;
+				img{
+					width:100%;
+					height:100%;
+					vertical-align:top;
+				}
+			}
+			div{
+				display:inline-block;
+				vertical-align:top;
+				p{
+					font-size:14px;
+					height:24px;
+					line-height:24px;
+					margin-top:10px;
+					margin-left:15px;
+					margin-bottom:20px;
+				}
+			}
+		}
+	}
+
+	// 收藏房源，个人房源样式
+
+	.hose_show{
+		/*height: 650px;*/
+		padding:20px 0;
+		display: flex;
+		/*justify-content: space-between;*/
+		justify-content: space-around;
+		// align-content: space-between;
+		flex-wrap: wrap;
+		width:100%;
+
+		dl{
+			height: 200px;
+			width: 45%;
+			background-size: cover;
+			margin-bottom: 24px;
+			position: relative;
+			border: 10px solid white;
+			overflow: hidden;
+		}
+		dl:hover{
+			box-shadow:#999999 0 0 10px ;
+		}
+		dl:hover p{
+			margin-top: 0px;
+			opacity:1;
+		}
+		dl dt{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			background-size: 100%;
+			background-clip:content-box;
+		}
+		dl dd{
+			height: 130px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+		}
+		dl dd a{
+			display: block;
+			width: 50px;
+			height: 50px;
+			border: 2px solid white;
+			border-radius: 50%;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		dl dd a img{
+			width: 50px;
+		}
+		dl dd h4{
+			margin: 12px auto;
+			font-size: 16px;
+			font-weight: 500;
+			color: white;
+			text-align: center;
+		}
+		dl dd p{
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			margin: auto;
+			background-color:#ee697c;
+			font-size: 18px;
+			color: white;
+			margin-top: 46px;
+			opacity:0;
+			transition: all 0.7s;
+		}
+
+	}
+
+
 	// 个人故事模块样式
 	.user-story-li{
 		display:flex;
 		justify-content:space-between;
 		flex-wrap:wrap;
+		padding:20px 0;
 		dl{
-			width:30%;
-			margin-bottom:20px;
+			width:45%;
+			margin:0 15px;
+			margin-bottom:40px;
 			color:#333333;
+			
 			dt{
-				height:100px;
+				height:200px;
 				width:100%;
 				img{
 					width:100%;

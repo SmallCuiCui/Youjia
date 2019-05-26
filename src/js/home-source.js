@@ -25,9 +25,49 @@ require(['config'],()=>{
 						})
 						this.data = list;
 						$("#houseWrap").html(template('houseModle',{list}));
+
+						this.bindEvents();
 					}
 				})
+				
+			}
 
+			bindEvents(){
+				let _this = this;
+				$(".shoucang").on("click","i",function(){
+					$(this).toggleClass('red');
+
+					let collectionId = $(this).parents(".post").attr("data-index");
+					let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+					console.log(userInfo.collection);
+					let collection = userInfo.collection.split(',');
+
+					if($(this).hasClass('red')){//收藏
+						if(collection){
+							collection.push(collectionId);
+						}else{
+							collection=[collectionId];
+						}
+					}else{// 取消收藏
+						let index= collection.indexOf(collectionId);
+						collection.splice(index,1);
+					}
+
+					userInfo.collection = collection.join();
+					console.log(userInfo.collection);
+					$.ajax({
+						url: url.phpBaseUrl + 'userInfoUd.php',
+						type: 'get',
+						dataType: 'json',
+						data: {userInfo},
+						success:data=>{
+							console.log(data);
+						}
+					});
+
+					// 修改本地，可以不需要
+					localStorage.setItem('userInfo',JSON.stringify(userInfo));
+				})
 			}
 		}
 

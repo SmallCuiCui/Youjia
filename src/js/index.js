@@ -1,5 +1,5 @@
 require(["config"],()=>{
-	require(["header","footer","calender"],(header)=>{
+	require(["header","url","template","footer","calender"],(header,url,template)=>{
 		
 		class Home{
 			constructor(){
@@ -13,8 +13,29 @@ require(["config"],()=>{
 				this.goNext = $("#goNext");
 				this.timer = null;//计时器
 
+				this.render();
 				this.bindEvents();
 				this.autoPlay();
+			}
+			render(){
+				let condition="8";
+				$.ajax({
+					url:url.phpBaseUrl+'homeSource.php',
+					type:'get',
+					data:{condition},
+					dataType: 'json',
+					success:data =>{
+						data = data.res_data;
+						let list = [];
+						data.forEach(item =>{
+							item = JSON.parse(item);
+							item.houseclass = item.houseclass.split(',');
+							item.tips = item.tips.split(',');
+							list.push(item);
+						})
+						$("#hose_show").html(template('hoseModule',{list}));
+					}
+				})
 			}
 			bindEvents(){
 				let _this = this;

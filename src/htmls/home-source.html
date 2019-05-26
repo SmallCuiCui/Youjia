@@ -78,7 +78,7 @@
 		<div class="house-wrap" id="houseWrap"></div>
 		<script type="text/html" id="houseModle">
 			{{each list house}}
-			<div class="post">
+			<div class="post" data-index={{house.houseid}}>
 				<div class="post-top">
 					<a href="/htmls/detail.html?id={{house.houseid}}">
 						<img src="/img/{{house.imgs}}/1.jpg" alt="" />
@@ -87,7 +87,9 @@
 						<i class="iconfont icon-redu"></i>
 						<span>{{house.price}}</span>
 					</h3>
-					<span class='unlike'>
+
+					<!-- 收藏按钮 -->
+					<span class='unlike shoucang'>
 						<i class="iconfont icon-shoucang"></i>
 					</span>
 				</div>

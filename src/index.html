@@ -131,13 +131,15 @@
 				
 				<script type="text/html" id="hoseModule">
 					{{each list item i}}
-					<dl href="#" data-index = {{item.id}}>
+					<dl data-index = {{item.id}}>
 						<!-- 民宿图片 -->
-						<dt class='jumpToHouse' style = 'background: url(img/house1/{{i+1}}.jpg) no-repeat center;background-size: 100%;'></dt>
+						<a href="/htmls/detail.html?id={{item.houseid}}">
+							<dt class='jumpToHouse' style = 'background: url(/img/{{item.imgs}}/1.jpg) no-repeat center;background-size: 100%;'></dt>
+						</a>
 						<dd>
 							<!-- 房东头像 -->
-							<a href="#"><img src="{{item.imgs[0]}}" /></a>
-							<h4>{{item.houseName}}</h4>
+							<a href="javascript:;"><img src="{{item.userimg}}" /></a>
+							<h4>{{item.housename}}</h4>
 							<p>{{item.price}}</p>
 						</dd>
 					</dl>

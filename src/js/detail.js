@@ -3,6 +3,20 @@ require(['config'],()=>{
 		class Detail{
 			constructor(){
 				this.render();
+
+				// 初始化新订单
+				this.newOrder = {
+					"userid":"",
+					"houseid":"",
+					"housename":"",
+					"houseimg":"",
+					"price":"",//民宿每晚价格
+					"status":"",
+					"number":"",//入住人数
+					"date":"",//订单用户选择入住日期
+					"time":"",//订单生成日期
+					"titleMoney":""//订单总价
+				}
 			}
 			render(){
 				let id = Number(location.search.slice(4));
@@ -20,7 +34,7 @@ require(['config'],()=>{
 						house.equipment = house.equipment.split(',');
 						house.remarks = house.remarks.split(',');
 						this.data = house;
-
+						console.log(this.data);
 						// console.log(house)
 						$("#houseInfoWrap").html(template("houseInfoModle",{house}))
 
@@ -65,6 +79,7 @@ require(['config'],()=>{
 					}
 				})
 			}
+			// 渲染房主信息
 			renderMaster(){
 				let masterId = this.data.userid;
 				$.ajax({
@@ -82,8 +97,9 @@ require(['config'],()=>{
 				})
 			}
 
-			bindEvents(){
 
+			bindEvents(){
+				let _this = this;
 				//固定订单框
 				document.onscroll = function(e){
 					var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -93,6 +109,88 @@ require(['config'],()=>{
 						document.querySelector('.orderBox').classList.remove('ac');
 					}
 				}
+
+				// 订单框日期选择
+				$(".selectDate").on("click",function(){
+					// 阻止冒泡，实现点击其他位置隐藏日历选择
+					event.stopPropagation();
+					$('.data-wrapS').show();
+				}).parents().click(function(){
+					$('.data-wrapS').hide();
+				});
+
+				// 订单框选择入住人数
+				// 点击减号
+				$("#jianBtn").on("click",function(){
+					let number = Number($("#numWrap").html());
+					if(--number<1)number=1;
+					$("#numWrap").html(number);
+				})
+				// 点击加号
+				$("#jiaBtn").on("click",function(){
+					let number = Number($("#numWrap").html());
+					if(++number>10)number=10;
+					$("#numWrap").html(number);
+				})
+
+				// 点击预定
+				$("#orderBtn").on("click",function(){
+
+					// 得到订单各项数据
+					_this.newOrder.houseid = _this.data.houseid;
+					_this.newOrder.houseimg = "/img/"+_this.data.imgs+".jpg";
+					_this.newOrder.housename = _this.data.housename;
+					_this.newOrder.price = _this.data.price;
+					_this.newOrder.status = "初始";
+					_this.newOrder.number = Number($("#numWrap").html());
+					if($("#selectDate").val()){
+						_this.newOrder.date = $("#selectDate").val();
+
+						// 获取入住总天数
+						// 2019/5/26~2019/5/27
+						let start = Number(_this.newOrder.date.substr(7,2));
+						let end = Number(_this.newOrder.date.substr(17,2));
+						_this.newOrder.number = end - start;
+
+						// 计算订单总结
+						_this.newOrder.titleMoney = _this.newOrder.number * _this.newOrder.price;
+
+					}else{
+						alert("请选择入住日期!");
+					}
+
+					// 获取当前时间
+					let date = new Date();
+					var year = date.getFullYear(),
+					month = date.getMonth() + 1,
+					day = date.getDate(),
+					h = date.getHours(),
+					m = date.getMinutes();
+
+					_this.newOrder.time = year+"/"+month+"/"+day+" "+h+":"+m;
+					// 获取当前登录用户id
+					_this.newOrder.userid = JSON.parse(localStorage.getItem("userInfo")).userid;
+
+					console.log(_this.newOrder);
+					let data = _this.newOrder;
+					$.ajax({
+						url: url.phpBaseUrl+'addOrder.php',
+						type: 'get',
+						dataType: 'json',
+						data: {data},
+						success:data=>{
+							if(data.res_code === 1){
+								alert(data.res_message);
+
+								// 生成消息
+							}else{
+								location.reload();
+							}
+						}
+					});
+					
+
+				})
 			}
 
 			imgsBindEvent(){

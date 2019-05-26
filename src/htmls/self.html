@@ -137,17 +137,39 @@
 						</li>
 						<!-- 订单 -->
 						<li class="order">
-							<div class="orders-con">订单内容</div>
+							<div class="notips">你还没有订单记录</div>
 						</li>
-						<!--  -->
-						<li>点评</li>
-						<li>收藏</li>
-						<li class="user-story-li" id="storyWrap">
+
+						<!-- 点评 -->
+						<li class="user-comment-li" id="commentWrap">
+							<div class="notips">你还没有点评记录</div>
 							
 						</li>
-						<li>钱包</li>
-						<li>消息</li>
-						<li>房源</li>
+
+						<!-- 收藏房源 -->
+						<li class="user-collection-li hose_show" id="collectionWrap">
+							<div class="notips">你还没有收藏记录</div>
+						</li>
+
+						<!-- 故事 -->
+						<li class="user-story-li" id="storyWrap">
+							<div class="notips">你还没有发表故事哦，快去发表吧</div>
+						</li>
+
+						<!-- 钱包 -->
+						<li class="user-money-li">
+							<div class="notips">你的钱包为空哦</div>
+						</li>
+
+						<!-- 消息 -->
+						<li class="user-notice-li">
+							<div class="notips">你还没有消息哦</div>
+						</li>
+							
+						<!-- 房源 -->
+						<li class="user-house-li hose_show" id="houseWrap">
+							<div class="notips">你还没有发布房源！</div>
+						</li>
 					</ul>
 
 				</div>
@@ -155,12 +177,74 @@
 		</div>
 	</script>
 
+	<!-- 点评模板 -->
+	<script type="text/html" id="commentModule">
+		<ul>
+			{{each data.comment item}}
+			<li>
+				<div class="comment-top">
+					<a href="javascript:;">
+						<img src="{{data.userInfo.img}}">
+					</a>
+					<div>
+						<font>{{data.userInfo.username}}<span>2019-2-4</span></font>
+					</div>
+				</div>
+				<p><span>评论内容：</span>{{item.commenttext}}</p>
+				<div class="comment-bot">
+					<a href="javascript:;"><img src="{{item.targetimg}}"></a>
+					<div>
+						<p>{{item.targetname}}</p>
+						<p>评论类型:{{item.commentclass}}</p>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+
+	<!-- 收藏房源模板 -->
+	<script type="text/html" id="collectionModule">
+		{{each data.collection item}}
+		<dl data-index = 1>
+			<!-- 民宿图片 -->
+			<a href="/htmls/detail.html?id={{item.houseid}}">
+				<dt class='jumpToHouse' style = 'background: url(/img/{{item.imgs}}/1.jpg) no-repeat center;background-size: 100%;'></dt>
+			</a>
+			<dd>
+				<!-- 房东头像 -->
+				<a href="javascript:;"><img src="{{item.userimg}}" /></a>
+				<h4>{{item.housename}}</h4>
+			</dd>
+		</dl>
+		{{/each}}
+	</script>
+
+	<!-- 故事模板 -->
 	<script type="text/html" id="storyModule">
-		{{each story item}}
+		{{each data.story item}}
 		<dl>
 			<dt><img src="{{item.image}}"></dt>
 			<h6>{{item.theme}}<span>{{item.time}}</span></h6>
 			<dd>{{item.storytext}}</dd>
+		</dl>
+		{{/each}}
+	</script>
+
+
+	<!-- 个人房源模板 -->
+	<script type="text/html" id="houseModule">
+		{{each data.house item}}
+		<dl data-index = 1>
+			<!-- 民宿图片 -->
+			<a href="/htmls/detail.html?id={{item.houseid}}">
+				<dt class='jumpToHouse' style = 'background: url(/img/{{item.imgs}}/1.jpg) no-repeat center;background-size: 100%;'></dt>
+			</a>
+			<dd>
+				<!-- 房东头像 -->
+				<a href="javascript:;"><img src="{{data.userInfo.img}}" /></a>
+				<h4>{{item.housename}}</h4>
+			</dd>
 		</dl>
 		{{/each}}
 	</script>

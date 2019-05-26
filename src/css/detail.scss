@@ -301,8 +301,8 @@
 	}
 }
 
-// 日历显示
-.date-wrap{
+// 可选日期 日历显示
+.selectable{
 	display:block;
 	top:20px;
 	left:100px;
@@ -363,7 +363,16 @@
 	line-height: 18px;
 	margin-top: 20px;
 }
-.houseInfo .orderBox .intime div,.houseInfo .orderBox .numbers p{
+.houseInfo .orderBox .intime{
+	position:relative;
+	.data-wrapS{
+		background-color:white;
+		// display:block;
+		top:70px;
+		left:0;
+	}
+}
+.houseInfo .orderBox .intime .selectBox,.houseInfo .orderBox .numbers p{
 	padding-left: 20px;
 	box-sizing: border-box;
 	position: relative;
@@ -375,12 +384,10 @@
 	line-height: 40px;
 	border:1px solid rgba(0,0,0,0.1);
 }
-.houseInfo .orderBox .intime div span{
-	padding: 5px 10px;
-	border:1px solid rgba(0,0,0,0.1);
-}
-.houseInfo .orderBox .intime div font{
-	padding: 5px 10px;
+.houseInfo .orderBox .intime .selectBox input{
+	width:200px;
+	height:30px;
+	padding-left:10px;
 	border:1px solid rgba(0,0,0,0.1);
 }
 
@@ -395,7 +402,7 @@
 	cursor: pointer;
 }
 .houseInfo .orderBox .numbers p span{
-	padding: 5px;
+	padding: 5px 10px;
 	border-top: 1px solid rgba(0,0,0,.1);
 	border-bottom: 1px solid rgba(0,0,0,.1);
 }
