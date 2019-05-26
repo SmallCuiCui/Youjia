@@ -10,6 +10,7 @@ require(['config'],()=>{
 					"houseid":"",
 					"housename":"",
 					"houseimg":"",
+					"masterid":"",
 					"price":"",//民宿每晚价格
 					"status":"",
 					"number":"",//入住人数
@@ -46,8 +47,9 @@ require(['config'],()=>{
 						this.bindEvents();
 						// 房源预览图片切换效果
 						this.imgsBindEvent();
-
+						// 渲染该房源评论
 						this.renderComment();
+						// 渲染该房源
 						this.renderMaster();
 
 						// 引入日历表
@@ -141,6 +143,7 @@ require(['config'],()=>{
 					_this.newOrder.houseimg = "/img/"+_this.data.imgs+".jpg";
 					_this.newOrder.housename = _this.data.housename;
 					_this.newOrder.price = _this.data.price;
+					_this.newOrder.masterid = _this.data.userid;
 					_this.newOrder.status = "初始";
 					_this.newOrder.number = Number($("#numWrap").html());
 					if($("#selectDate").val()){

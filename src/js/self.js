@@ -63,6 +63,7 @@ require(['config'],()=>{
 
 				data = this.data;
 				// 渲染个人订单
+				$("#orderWrap").html(template("orderModule",{data}))
 				// 渲染收藏房源
 				$("#collectionWrap").html(template("collectionModule",{data}))
 

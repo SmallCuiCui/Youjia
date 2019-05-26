@@ -3,17 +3,22 @@ require(['config'],()=>{
 		class Source{
 
 			constructor(){
-				this.render('all');
+				// location.search.slice(4)
+				// 链接中取到的数据被编码过了，需要进行解码，
+				let condition = decodeURI(location.search.slice(11));
+				this.render(condition);
 			}
 
 			render(condition){
 
+				let tiaojian = {"condition":condition};
 				$.ajax({
 					url:url.phpBaseUrl+'homeSource.php',
 					type:'get',
-					data:{condition},
+					data:{'condition':condition},
 					dataType: 'json',
 					success:data =>{
+						console.log(data);
 						this.data = data.res_data;
 
 						let list = [];
@@ -34,6 +39,18 @@ require(['config'],()=>{
 
 			bindEvents(){
 				let _this = this;
+
+				// 点击筛选按钮，进行房源筛选
+				$("#aFilter").on("click",function(){
+					let condition = $("#addressInput").val();
+					if(condition){
+						location.href = "/htmls/home-source.html?condition="+condition;
+					}else{
+						alert("请输入筛选条件");
+					}
+				})
+
+				// 房源收藏
 				$(".shoucang").on("click","i",function(){
 					$(this).toggleClass('red');
 
@@ -68,6 +85,18 @@ require(['config'],()=>{
 					// 修改本地，可以不需要
 					localStorage.setItem('userInfo',JSON.stringify(userInfo));
 				})
+
+				// 点击选择日期
+				$(".selectDate").on("click",function(){
+
+					console.log(111);
+					// 阻止冒泡，实现点击其他位置隐藏日历选择
+					event.stopPropagation();
+					$('.date-wrap').show();
+				}).parents().click(function(){
+					$('.date-wrap').hide();
+				});
+
 			}
 		}
 

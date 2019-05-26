@@ -18,11 +18,11 @@ require(["config"],()=>{
 				this.autoPlay();
 			}
 			render(){
-				let condition="8";
+				let condition="6";
 				$.ajax({
 					url:url.phpBaseUrl+'homeSource.php',
 					type:'get',
-					data:{condition},
+					data:{'condition':condition},
 					dataType: 'json',
 					success:data =>{
 						data = data.res_data;
@@ -64,6 +64,16 @@ require(["config"],()=>{
 					$('.date-wrap').hide();
 				});
 
+				// 点击筛选
+				$("#searchBtn").on("click",function(){
+					event.preventDefault();
+					let condition = $("#conditionInput").val();
+					if(condition){
+						location.href = "/htmls/home-source.html?condition="+condition;
+					}else{
+						alert("请输入筛选条件！");
+					}
+				})
 				//旅客故事的切换
 				$("#ul-li-l li").mouseover(function(){
 					var index = $(this).index();

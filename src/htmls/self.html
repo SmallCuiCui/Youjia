@@ -75,6 +75,10 @@
 							<span>故事</span>
 						</li>
 						<li>
+							<i class="iconfont icon-xiaoxi"></i>
+							<span>房源</span>
+						</li>
+						<li>
 							<i class="iconfont icon-quan"></i>
 							<span>钱包</span>
 						</li>
@@ -82,10 +86,7 @@
 							<i class="iconfont icon-xiaoxi"></i>
 							<span>消息</span>
 						</li>
-						<li>
-							<i class="iconfont icon-xiaoxi"></i>
-							<span>房源</span>
-						</li>
+						
 
 					</ul>
 				</div>
@@ -136,8 +137,9 @@
 							</div>
 						</li>
 						<!-- 订单 -->
-						<li class="order">
+						<li class="user-order-li" id="orderWrap">
 							<div class="notips">你还没有订单记录</div>
+							
 						</li>
 
 						<!-- 点评 -->
@@ -156,6 +158,11 @@
 							<div class="notips">你还没有发表故事哦，快去发表吧</div>
 						</li>
 
+						<!-- 房源 -->
+						<li class="user-house-li hose_show" id="houseWrap">
+							<div class="notips">你还没有发布房源！</div>
+						</li>
+
 						<!-- 钱包 -->
 						<li class="user-money-li">
 							<div class="notips">你的钱包为空哦</div>
@@ -166,15 +173,37 @@
 							<div class="notips">你还没有消息哦</div>
 						</li>
 							
-						<!-- 房源 -->
-						<li class="user-house-li hose_show" id="houseWrap">
-							<div class="notips">你还没有发布房源！</div>
-						</li>
+						
 					</ul>
 
 				</div>
 			</div>
 		</div>
+	</script>
+
+	<!-- 订单模板 -->
+	<script type="text/html" id="orderModule">
+		{{each data.orders item}}
+		<div class="orderlist">
+			<div class="order-top">
+				<a href="javascript:;"><img src="{{item.houseimg}}"></a>
+				<div class="order-con">
+					<p class="housename">{{item.housename}}<font>({{item.price}}/晚)</font><span>{{item.time}}</span></p>
+					<ul>
+						<li>入住时间：<span>{{item.date}}</span></li>
+						<li>入住人数：<span>{{item.number}}人</span></li>
+					</ul>
+					<h6>小计：<span>{{item.titleMoney}}元</span></h6>
+				</div>
+			</div>
+			<div class="order-btom">
+				<ol>
+					<li>订单还未支付定金，24小时未支付将取消订单<a href="javascript">立即支付</a></li>
+					<li><a href="javascript:;">取消订单</a></li>
+				</ol>
+			</div>
+		</div>
+		{{/each}}
 	</script>
 
 	<!-- 点评模板 -->
