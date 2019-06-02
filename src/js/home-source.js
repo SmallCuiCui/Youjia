@@ -63,24 +63,24 @@ require(['config'],()=>{
 
 					let collectionId = $(this).parents(".post").attr("data-index");
 					let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-					console.log(userInfo.collection);
 					let collection = userInfo.collection.split(',');
-
-					if($(this).hasClass('red')){//收藏
+					
+					//收藏
+					if($(this).hasClass('red')){
 						if(collection){
-							collection.push(collectionId);
-						}else{
 							// 判断数组中是否已经收藏该房源
 							if(collection.indexOf(collectionId) === -1){
-								collection=[collectionId];
+								collection.push(collectionId);
 							}
-							
+						}else{
+							collection=[collectionId];
 						}
+						console.log(collection);
 					}else{// 取消收藏
 						let index= collection.indexOf(collectionId);
 						collection.splice(index,1);
 					}
-
+					
 					userInfo.collection = collection.join();
 					console.log(userInfo.collection);
 					$.ajax({

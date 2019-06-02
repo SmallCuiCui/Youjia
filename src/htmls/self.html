@@ -22,7 +22,8 @@
 			<div class="cont-top">
 				<div class="cont-top-left">
 					<div class="touxiang" id="touxiang">
-						<img src="/img/t1.jpg"/>
+						<img src="{{data.img}}"/>
+						<input type="file" id="changeImg">
 					</div>
 					<div class="info">
 						<p>
@@ -40,7 +41,7 @@
 							</li>
 							<li>
 								<i class="iconfont icon-renzheng"></i>
-								<span>已认证</span>
+								<span id="isIdentify">已认证</span>
 							</li>
 						</ul>
 					</div>
@@ -155,7 +156,7 @@
 
 						<!-- 故事 -->
 						<li class="user-story-li" id="storyWrap">
-							<div class="notips">你还没有发表故事哦，快去发表吧</div>
+							<div class="notips">你还没有故事哦，快去发表吧!</div>
 						</li>
 
 						<!-- 房源 -->

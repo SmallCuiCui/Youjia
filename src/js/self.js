@@ -22,13 +22,14 @@ require(['config'],()=>{
 				// 订单，故事，房源，评论，收藏 从数据库获取
 				let userid = this.data.userInfo.userid;
 				let collections = this.data.userInfo.collection;
-
+				console.log(this.data);
 				$.ajax({
 					url: url.phpBaseUrl+'getUserData.php',
 					type: 'get',
 					dataType: 'json',
 					data: {userid,collections},
 					success:data=>{
+						console.log(data);
 						let alldata = data.res_data;
 						for(var key in alldata){
 							let list = JSON.parse(alldata[key]);
@@ -43,7 +44,7 @@ require(['config'],()=>{
 							}
 							
 						}
-						console.log(this.data);
+						// console.log(this.data);
 						this.render();
 						this.bindEvents();
 					}
@@ -60,22 +61,40 @@ require(['config'],()=>{
 				//初始下表单不可编辑
 				$('.cont-bot-rigth input').attr('disabled',true);
 
+				// 渲染身份是否验证
+				if(data.identityid && data.trueName){
+					$("#isIdentify").html("已验证");
+				}else{
+					$("#isIdentify").html("未验证");
+				}
 
 				data = this.data;
-				// 渲染个人订单
-				$("#orderWrap").html(template("orderModule",{data}))
-				// 渲染收藏房源
-				$("#collectionWrap").html(template("collectionModule",{data}))
 
+
+				// 渲染个人订单
+				if(data.orders.length>0){
+					$("#orderWrap").html(template("orderModule",{data}));
+				}
+				
+				// 渲染收藏房源
+				if(data.collection.length>0){
+					$("#collectionWrap").html(template("collectionModule",{data}));
+				}
 
 				// 渲染个人评价
-				$("#commentWrap").html(template("commentModule",{data}))
+				if(data.comment.length>0){
+					$("#commentWrap").html(template("commentModule",{data}));
+				}
 
 				// 渲染个人故事
-				$("#storyWrap").html(template("storyModule",{data}));
-
+				if(data.story.length>0){
+					$("#storyWrap").html(template("storyModule",{data}));
+				}
+				
 				// 渲染个人房源
-				$("#houseWrap").html(template("houseModule",{data}))
+				if(data.house.length>0){
+					$("#houseWrap").html(template("houseModule",{data}));
+				}
 
 			}
 			bindEvents(){ 
@@ -101,6 +120,36 @@ require(['config'],()=>{
 					$('.cont-bot-rigth ul').children('li').eq(this.index).show().siblings().hide();
 				});
 
+				// 点击头像，换头像
+				$("#changeImg").on("change",function(){
+					var filePath = $(this).val(),
+					fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+					let _src = window.URL.createObjectURL(this.files[0]);
+					// 检查是否是图片
+					if(!fileFormat.match(/.png|.jpg|.jpeg/)) {
+						alert("请选择图片格式(.png|.jpg|.jpeg)文件！");
+						return;  
+					}
+					$("#touxiang img").prop("src",_src);
+					
+					// 修改数据库
+					_this.data.userInfo.img = _src;
+					let userInfo = _this.data.userInfo;
+					$.ajax({
+						url: url.phpBaseUrl + 'userInfoUd.php',
+						type: 'get',
+						dataType: 'json',
+						data: {userInfo},
+						success:data=>{
+							if(data.res_code===1){
+								alert(data.res_message);
+							}
+						}
+					});
+					localStorage.setItem('userInfo',JSON.stringify(userInfo));
+
+				})
+
 				//点击编辑
 				$('.edit').click(function(){
 
@@ -117,13 +166,13 @@ require(['config'],()=>{
 						let prop = $(this).prop("id");
 						_this.data.userInfo[prop] = $(this).val();
 					})
+
+					// 获取头像数据
 					
 					// 修改本地
 					let userInfo = _this.data.userInfo;
-					
 					// let expires = {expires:10,path:'/'};
 					// $.cookie("user",userInfo.phone,expires);
-
 					// 存数据库
 					$.ajax({
 						url: url.phpBaseUrl + 'userInfoUd.php',
@@ -137,6 +186,13 @@ require(['config'],()=>{
 						}
 					});
 					localStorage.setItem('userInfo',JSON.stringify(userInfo));
+
+					// 渲染身份是否验证
+					if(userInfo.identityid && userInfo.trueName){
+						$("#isIdentify").html("已验证");
+					}else{
+						$("#isIdentify").html("未验证");
+					}
 
 					//设置当前为不可编辑
 					$(this).parent().parent().children('div').children('p').children('input').attr('disabled',true).removeClass('ed');

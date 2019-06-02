@@ -75,6 +75,7 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 			$("#regsphone").blur(function(){
 				_this.phone = $("#regsphone").val();
 				_this.psw = "";
+				_this.username = "";
 
 				// 先验证电话号码格式
 				if(_this.phone){
@@ -119,6 +120,19 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 					$("#che-pas-p").css("opacity",1);
 				}
 			})
+
+			// 注册用户名输入
+			$("#nameinput").blur(function(){
+				if($(this).val()){
+					_this.reg = true;
+					_this.username = $(this).val();
+					$("#che-name-p").css("opacity",0);
+				}else{
+					_this.reg = false;
+					$("#che-name-p").css("opacity",1);
+				}
+			})
+
 			// 登陆账户验证
 			$("#loginInput").blur(function(){
 				_this.phone = $(this).val();
@@ -192,11 +206,13 @@ define(['jquery',"template","url","cookie"],($,templat,url)=>{
 
 					// 访问数据库，插入数据
 					let phone = _this.phone,
+						username = _this.username,
 						psw = _this.psw;
+					console.log(phone,username,psw);
 					$.ajax({
 						url:url.phpBaseUrl + "register.php",
 						type:'post',
-						data:{phone,psw},
+						data:{phone,psw,username},
 						dataType:'json',
 						success:data=>{
 							if(data.res_code === 0){

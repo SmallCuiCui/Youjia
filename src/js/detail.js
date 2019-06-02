@@ -138,6 +138,15 @@ require(['config'],()=>{
 				// 点击预定
 				$("#orderBtn").on("click",function(){
 
+					// 获取当前登录用户id
+					if(!localStorage.getItem("userInfo")){
+						alert("请先进行登录！");
+						return;
+					}else{
+						_this.newOrder.userid = JSON.parse(localStorage.getItem("userInfo")).userid;
+					}
+					
+
 					// 得到订单各项数据
 					_this.newOrder.houseid = _this.data.houseid;
 					_this.newOrder.houseimg = "/img/"+_this.data.imgs+"/1.jpg";
@@ -171,8 +180,7 @@ require(['config'],()=>{
 					m = date.getMinutes();
 
 					_this.newOrder.time = year+"/"+month+"/"+day+" "+h+":"+m;
-					// 获取当前登录用户id
-					_this.newOrder.userid = JSON.parse(localStorage.getItem("userInfo")).userid;
+					
 
 					console.log(_this.newOrder);
 					let data = _this.newOrder;
@@ -219,7 +227,6 @@ require(['config'],()=>{
 					if(target.nodeName == 'IMG'){
 						
 						var parent = target.parentNode.parentNode;
-						console.log(parent);
 						if(parent.nodeName == 'OL'){
 							//console.log(1);
 							let idx = target.parentNode.getAttribute('index');
