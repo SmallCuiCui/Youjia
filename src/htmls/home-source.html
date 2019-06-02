@@ -73,9 +73,9 @@
 
 	<!-- 房源展示区域 -->
 	<div class="content">
-
-
-		<div class="house-wrap" id="houseWrap"></div>
+		<div class="house-wrap" id="houseWrap">
+			
+		</div>
 		<script type="text/html" id="houseModle">
 			{{each list house}}
 			<div class="post" data-index={{house.houseid}}>
@@ -119,12 +119,7 @@
 		</script>
 
 		<div class="show_more">
-			<span class="more_btn">加载更多</span>
-			<div class="hid">
-				<i class="iconfont icon-hongyuan-copy-copy"></i>
-				<i class="iconfont icon-hongyuan-copy-copy"></i>
-				<i class="iconfont icon-hongyuan-copy-copy"></i>
-			</div>
+			<span class="more_btn" id="moreBtn">加载更多</span>
 		</div>
 	</div>
 

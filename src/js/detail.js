@@ -140,7 +140,7 @@ require(['config'],()=>{
 
 					// 得到订单各项数据
 					_this.newOrder.houseid = _this.data.houseid;
-					_this.newOrder.houseimg = "/img/"+_this.data.imgs+".jpg";
+					_this.newOrder.houseimg = "/img/"+_this.data.imgs+"/1.jpg";
 					_this.newOrder.housename = _this.data.housename;
 					_this.newOrder.price = _this.data.price;
 					_this.newOrder.masterid = _this.data.userid;

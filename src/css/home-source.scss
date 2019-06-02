@@ -102,6 +102,14 @@ section form dl dd{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+
+	.noHouse{
+		margin:100px auto;
+		font-size:14px;
+		color:red;
+		padding:20px 50px;
+		border:1px solid #333333;
+	}
 }
 .house-wrap .post{
 	/*height: 450px;*/

@@ -199,6 +199,7 @@
 	flex: 1;
 	color: white;
 	font-size: 18px;
+	cursor:pointer;
 	letter-spacing: 5px;
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
@@ -262,6 +263,13 @@
 	font-size: 15px;
 	border-radius: 5px;
 	font-family: 'Crimson Text', serif;
+	&.ac{
+		background-color: #f0546a;
+		a{
+			color: #fff;
+		}
+	}
+
 }
 .main-content .price_first .price_top ul li:hover{
 	background-color: #f0546a;
@@ -288,6 +296,7 @@
 	position: relative;
 	border: 10px solid white;
 	overflow: hidden;
+	cursor:pointer;
 }
 .main-content .price_first .hose_show dl:hover{
 	box-shadow:#999999 0 0 10px ;
@@ -296,12 +305,17 @@
 	margin-top: 0px;
 	opacity:1;
 }
+.main-content .price_first .hose_show dl>a{
+	display:inline-block;
+	height:100%;
+	width:100%;
+}
 .main-content .price_first .hose_show dl dt{
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
-	background-size: 100%;
+	background-size: cover;
 	background-clip:content-box;
 }
 .main-content .price_first .hose_show dl dd{
@@ -436,6 +450,7 @@
 	letter-spacing: 2px;
 	display: block;
 	margin-top: 24px;
+	cursor:pointer;
 	margin-left: 10px;
 	font-size: 14px;
 	color: white;

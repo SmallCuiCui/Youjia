@@ -144,7 +144,61 @@ require(['config'],()=>{
 					$(this).siblings('.edit').show();//显示编辑
 				});
 
-				
+				// 点击立即支付定金
+				$(".payOrder").on("click",function(){
+					alert("支付成功！");
+					$(this).parents("ol").html("<li style='coor:red;'>欢迎入住！</li>");
+				})
+
+				// 点击取消订单
+				$(".cancelOrder").on("click",function(){
+					let index = $(this).parents('.orderlist').attr("data-index");
+					let operation = {
+						"type":"order",
+						"id":index
+					}
+
+					$.ajax({
+						url: url.phpBaseUrl + 'cancel.php',
+						type: 'get',
+						dataType: 'json',
+						data: {operation},
+						success:data=>{
+							if(data.res_code === 1){
+								alert(data.res_message);
+								$(this).parents('.orderlist').remove();
+							}
+						}
+					});
+					
+				});
+
+				// 取消收藏房源
+				$(".cancelcolection").on("click",function(){
+					let index = $(this).parents('dl').attr("data-index");
+
+					// 修改收藏房源数据
+					let userInfo = _this.data.userInfo;
+					let collection = userInfo.collection.split(',');
+					collection.splice(index,1);
+					userInfo.collection = collection.join();
+
+					$.ajax({
+						url: url.phpBaseUrl + 'userInfoUd.php',
+						type: 'get',
+						dataType: 'json',
+						data: {userInfo},
+						success:data=>{
+							if(data.res_code===1){
+								alert("房源收藏取消成功！");
+								$(this).parents("dl").remove();
+							}
+						}
+					});
+
+					localStorage.setItem('userInfo',JSON.stringify(userInfo));
+				})
+
 			}
 		}
 		new Self();

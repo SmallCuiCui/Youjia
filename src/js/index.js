@@ -4,6 +4,8 @@ require(["config"],()=>{
 		class Home{
 			constructor(){
 
+				this.condition = "6";
+
 				// 轮播图相关变量
 				this.index = 0;//标记当前轮播图
 
@@ -18,7 +20,7 @@ require(["config"],()=>{
 				this.autoPlay();
 			}
 			render(){
-				let condition="6";
+				let condition=this.condition;
 				$.ajax({
 					url:url.phpBaseUrl+'homeSource.php',
 					type:'get',
@@ -32,7 +34,11 @@ require(["config"],()=>{
 							item.houseclass = item.houseclass.split(',');
 							item.tips = item.tips.split(',');
 							list.push(item);
-						})
+						});
+						if(list.length>6){
+							list.length = 6;
+						}
+						console.log(list);
 						$("#hose_show").html(template('hoseModule',{list}));
 					}
 				})
@@ -93,6 +99,14 @@ require(["config"],()=>{
 					$(".story-f div").eq(index).show();
 					$(".story-f div").eq(index).siblings().hide();
 				});
+
+				// 特惠房源筛选
+				$(".priceSelect").on("click",function(){
+					$(this).addClass('ac').siblings().removeClass('ac');
+					_this.condition = $(this).text();
+					_this.render();
+					
+				})
 
 			}
 

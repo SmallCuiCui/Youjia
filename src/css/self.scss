@@ -249,7 +249,7 @@ body{
 	}
 	// 订单样式
 	.user-order-li{
-		width:100%;
+		width:95%;
 		.orderlist{
 			.order-top{
 				width:100%;
@@ -319,6 +319,7 @@ body{
 					li{
 						font-size:14px;
 						margin-right:25px;
+						color:#999999;
 						a{
 							border-radius:5px;
 							padding:5px 10px;
@@ -428,7 +429,6 @@ body{
 	}
 
 	// 收藏房源，个人房源样式
-
 	.hose_show{
 		/*height: 650px;*/
 		padding:20px 0;
@@ -447,13 +447,20 @@ body{
 			position: relative;
 			border: 10px solid white;
 			overflow: hidden;
-		}
-		dl:hover{
-			box-shadow:#999999 0 0 10px ;
-		}
-		dl:hover p{
-			margin-top: 0px;
-			opacity:1;
+
+			a{
+				display:block;
+				width:100%;
+				height:100%;
+			}
+
+			&:hover{
+				box-shadow:#999999 0 0 10px ;
+			}
+			&:hover p{
+				margin-top: 0px;
+				opacity:1;
+			}
 		}
 		dl dt{
 			position: absolute;
@@ -464,10 +471,9 @@ body{
 			background-clip:content-box;
 		}
 		dl dd{
-			height: 130px;
-			width: 100%;
 			position: absolute;
 			bottom: 0;
+			left:35%;
 		}
 		dl dd a{
 			display: block;
@@ -488,6 +494,7 @@ body{
 			color: white;
 			text-align: center;
 		}
+
 		dl dd p{
 			width: 100px;
 			height: 30px;
@@ -495,10 +502,11 @@ body{
 			text-align: center;
 			margin: auto;
 			background-color:#ee697c;
-			font-size: 18px;
+			font-size: 12px;
+			letter-spacing:1px;
 			color: white;
-			margin-top: 46px;
 			opacity:0;
+			cursor:pointer;
 			transition: all 0.7s;
 		}
 
