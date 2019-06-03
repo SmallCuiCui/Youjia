@@ -3,7 +3,7 @@
 		"host" => "localhost:3306",
 		"username" => "root",
 		"password" => "",
-		"dbname" => "Armour"
+		"dbname" => "youjia"
 	);
 
 	mysql_connect($config["host"],$config["username"],$config["password"]);
