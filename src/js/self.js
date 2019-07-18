@@ -22,7 +22,7 @@ require(['config'],()=>{
 				// 订单，故事，房源，评论，收藏 从数据库获取
 				let userid = this.data.userInfo.userid;
 				let collections = this.data.userInfo.collection;
-				console.log(this.data);
+				console.log(this.data);	
 				$.ajax({
 					url: url.phpBaseUrl+'getUserData.php',
 					type: 'get',
